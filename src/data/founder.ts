@@ -33,7 +33,7 @@ export const credentials = [
   {
     title: 'Professional Affiliations',
     items: [
-      { main: '[CRIMINAL DEFENCE LAWYERS ASSOCIATION]', sub: 'Member' },
+      { main: '[COMMERCIAL OR CORPORATE LAW ASSOCIATION]', sub: 'Member' },
       { main: '[COMMERCIAL LAW SECTION OR SOCIETY]', sub: 'Member' },
       { main: '[LOCAL CHAMBER OF COMMERCE OR LEGAL AID PANEL]', sub: '[Role], [YEAR]–present' },
     ],
@@ -44,7 +44,7 @@ export const timeline = [
   {
     year: '2026',
     role: 'Founding Attorney, Claemont Ridge Law',
-    line: 'Opened the firm in [CITY/REGION] to practise criminal defence and commercial law directly for clients.',
+    line: 'Opened the firm in [CITY/REGION] to advise businesses and professionals on the agreements they depend on.',
   },
   {
     year: '[YEAR]–2026',

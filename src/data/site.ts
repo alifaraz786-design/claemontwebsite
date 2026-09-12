@@ -21,7 +21,6 @@ export const contact = {
   phone: '+00 000 000 0000',
   /** Digits only, for the tel: href. */
   phoneHref: '+000000000000',
-  outOfHours: '[NUMBER]',
   email: 'claemontridgelaw@gmail.com',
   careersEmail: 'careers@claemontridge.law',
   founderEmail: '[first.last]@claemontridge.law',
@@ -61,9 +60,9 @@ export const footerColumns = [
   {
     title: 'Commercial services',
     links: [
-      { label: '[SERVICE 1]', href: '/services#service-1' },
-      { label: '[SERVICE 2]', href: '/services#service-2' },
-      { label: '[SERVICE 3]', href: '/services#service-3' },
+      { label: 'Commercial Agreements', href: '/services#commercial-agreements' },
+      { label: 'Technology Contracts', href: '/services#technology-contracts' },
+      { label: 'Digital Terms & Policies', href: '/services#digital-terms-and-policies' },
       { label: 'All commercial services', href: '/services' },
     ],
   },

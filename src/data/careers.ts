@@ -20,7 +20,7 @@ export const whyJoin = [
   {
     num: '03',
     title: 'A varied caseload',
-    body: 'Criminal and commercial matters in the same week. You learn how each discipline sharpens the other.',
+    body: 'Technology, commercial and employment agreements in the same week. You learn how each kind of contract informs the others.',
   },
 ] as const;
 

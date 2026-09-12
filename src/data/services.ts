@@ -1,25 +1,28 @@
 /**
- * Practice areas.
+ * Commercial service groups.
  *
- * `tone` drives the alternating ink/bone rhythm down the services page — the
- * components read it rather than deciding for themselves, so reordering this
- * array reflows the page correctly. Keep it alternating.
+ * These are service groups within one focused practice — not separate or
+ * unrelated practice areas. Copy should never describe them as such.
+ *
+ * `tone` drives the alternating ink/bone rhythm down the Commercial Services
+ * page; the components read it rather than deciding for themselves, so
+ * reordering this array reflows the page correctly. Keep it alternating.
  */
 
 export type Tone = 'ink' | 'bone';
 
 export type Service = {
   num: string;
-  /** Anchor target, also used by the footer links. */
+  /** Anchor target on /services, also used by the homepage cards and footer. */
   slug: string;
-  /** Who the area is for, shown as the eyebrow. */
+  /** Who the group serves, shown as the card eyebrow. */
   audience: string;
-  /** Lowercase noun used in "Discuss a ___ matter". */
+  /** Reads after "Discuss" — e.g. "a technology contract". */
   short: string;
   title: string;
-  /** Two lines, for the card on the homepage. */
+  /** Card body on the homepage. */
   teaser: string;
-  /** 40–60 words, for the services page. */
+  /** Opening paragraph on the Commercial Services page. */
   body: string;
   matters: readonly string[];
   tone: Tone;
@@ -28,101 +31,109 @@ export type Service = {
 export const services: readonly Service[] = [
   {
     num: '01',
-    slug: 'criminal-defence',
-    audience: 'For individuals',
-    short: 'criminal',
-    title: 'Criminal Defence',
+    slug: 'commercial-agreements',
+    audience: 'Companies & Agencies',
+    short: 'a commercial agreement',
+    title: 'Commercial Agreements',
     teaser:
-      'Representation from first interview through trial. Discreet, immediate, and available out of hours.',
-    body: 'If you have been arrested, charged, or asked to attend a police interview, you need advice before you say anything. The firm acts from the first phone call through to trial or resolution, explains each stage in plain terms, and keeps your matter as private as the law allows.',
+      'Service agreements, consulting agreements, master service agreements, statements of work, supplier terms, partnership arrangements, and other contracts used in day to day business.',
+    body: 'Service agreements, consulting agreements, master service agreements, statements of work, supplier terms, partnership arrangements, and other contracts used in day to day business.',
     matters: [
-      'Police station attendance and interview under caution',
-      'Bail applications and conditions',
-      'Assault and public order offences',
-      'Drug possession and supply',
-      'Driving offences and disqualification',
-      'Fraud and dishonesty allegations',
+      'Service agreements',
+      'Consulting agreements',
+      'Master service agreements',
+      'Statements of work',
+      'Supplier terms',
+      'Partnership arrangements',
     ],
     tone: 'ink',
   },
   {
     num: '02',
-    slug: 'business-contract-law',
-    audience: 'For businesses',
-    short: 'commercial',
-    title: 'Business & Contract Law',
+    slug: 'technology-contracts',
+    audience: 'Technology & Software',
+    short: 'a technology contract',
+    title: 'Technology Contracts',
     teaser:
-      'Drafting, review and negotiation for owner-managed businesses. Plain scopes, fixed fees where possible.',
-    body: 'Owner-managed businesses need contracts that hold up and can be read without a lawyer present. The firm drafts, reviews and negotiates agreements, advises on disputes before they reach court, and quotes a fixed fee wherever the scope of work allows it.',
+      'SaaS agreements, software and subscription terms, licensing arrangements, implementation terms, support agreements, and contracts for technology enabled services.',
+    body: 'SaaS agreements, software and subscription terms, licensing arrangements, implementation terms, support agreements, and contracts for technology enabled services.',
     matters: [
-      'Supplier and customer agreements',
-      'Terms of business and service contracts',
-      'Shareholder and partnership agreements',
-      'Employment contracts and consultancy terms',
-      'Commercial lease review',
-      'Contract disputes and recovery of debts',
+      'SaaS agreements',
+      'Software and subscription terms',
+      'Licensing arrangements',
+      'Implementation terms',
+      'Support agreements',
+      'Contracts for technology enabled services',
     ],
     tone: 'bone',
   },
   {
     num: '03',
-    slug: 'practice-area-3',
-    audience: '[AUDIENCE]',
-    short: '[practice area 3]',
-    title: '[PRACTICE AREA 3]',
-    teaser: 'Two-line description of who this serves and what the firm does for them. Replace with real copy.',
-    body: '[40–60 words explaining this practice area to a non-lawyer: who it is for, what typically brings a client to the firm, and what the firm does for them at each stage. Plain language, no jargon, no promises of outcomes.]',
+    slug: 'digital-terms-and-policies',
+    audience: 'Online Business',
+    short: 'your digital terms',
+    title: 'Digital Terms & Policies',
+    teaser:
+      'Website terms, privacy and cookie notices, e-commerce terms, refund and return policies, platform rules, and customer facing documents for digital businesses.',
+    body: 'Website terms, privacy and cookie notices, e-commerce terms, refund and return policies, platform rules, and customer facing documents for digital businesses.',
     matters: [
-      '[Matter handled 1]',
-      '[Matter handled 2]',
-      '[Matter handled 3]',
-      '[Matter handled 4]',
-      '[Matter handled 5]',
-      '[Matter handled 6]',
+      'Website terms',
+      'Privacy and cookie notices',
+      'E-commerce terms',
+      'Refund and return policies',
+      'Platform rules',
+      'Customer facing documents',
     ],
     tone: 'ink',
   },
   {
     num: '04',
-    slug: 'practice-area-4',
-    audience: '[AUDIENCE]',
-    short: '[practice area 4]',
-    title: '[PRACTICE AREA 4]',
-    teaser: 'Two-line description of who this serves and what the firm does for them. Replace with real copy.',
-    body: '[40–60 words explaining this practice area to a non-lawyer: who it is for, what typically brings a client to the firm, and what the firm does for them at each stage. Plain language, no jargon, no promises of outcomes.]',
+    slug: 'work-and-employment-agreements',
+    audience: 'Professional Relationships',
+    short: 'a work agreement',
+    title: 'Work & Employment Agreements',
+    teaser:
+      'Independent contractor agreements, employment agreement review, confidentiality terms, non-disclosure agreements, non-solicitation provisions, and agreements for professional services.',
+    body: 'Independent contractor agreements, employment agreement review, confidentiality terms, non-disclosure agreements, non-solicitation provisions, and agreements for professional services.',
     matters: [
-      '[Matter handled 1]',
-      '[Matter handled 2]',
-      '[Matter handled 3]',
-      '[Matter handled 4]',
+      'Independent contractor agreements',
+      'Employment agreement review',
+      'Confidentiality terms',
+      'Non-disclosure agreements',
+      'Non-solicitation provisions',
+      'Agreements for professional services',
     ],
     tone: 'bone',
   },
 ] as const;
 
-/** How a matter proceeds — the four-step band on the services page. */
+/** How a matter proceeds — the four-step band on the Commercial Services page. */
 export const processSteps = [
-  { num: '01', title: 'Enquiry', body: 'Call or write. You reach the firm directly and hear back the same business day.' },
-  { num: '02', title: 'Consultation', body: 'A confidential conversation, without charge, to understand your position.' },
-  { num: '03', title: 'Strategy', body: 'A written scope, a fee arrangement, and a plan you have agreed to.' },
-  { num: '04', title: 'Resolution', body: 'The matter is carried through, with a progress update at every stage.' },
+  { num: '01', title: 'Enquiry', body: 'Call or write. You reach the firm directly, not an intake team.' },
+  { num: '02', title: 'Consultation', body: 'A confidential conversation, without charge, to understand the transaction.' },
+  { num: '03', title: 'Scope', body: 'A written scope, a fee arrangement, and a plan you have agreed to before work begins.' },
+  { num: '04', title: 'Delivery', body: 'The documents are drafted and settled, with a progress update at every stage.' },
 ] as const;
 
-/** "What you can hold us to" — the three commitments on the homepage. */
-export const commitments = [
+/**
+ * The Approach — three principles shown on the homepage and anchored at
+ * /#approach. These describe how the firm works. They are not guarantees:
+ * no fixed fee and no response time is promised here or anywhere else.
+ */
+export const principles = [
   {
     num: '01',
-    title: 'The founder, directly',
-    body: 'Your matter is handled by [FOUNDER NAME] personally. You have his direct line and email from the first meeting.',
+    title: 'Directly handled',
+    body: 'Your matter is handled by a team of professionals from the first substantive discussion through the final work. The person who learns the transaction is the person responsible for the document.',
   },
   {
     num: '02',
-    title: 'Fees agreed in writing',
-    body: 'A written scope and fee arrangement before any work begins. Fixed fees for contract work wherever the scope allows.',
+    title: 'Clearly scoped',
+    body: 'Before substantive work begins, the engagement identifies the work to be undertaken, the expected deliverables, and the applicable fee arrangement.',
   },
   {
     num: '03',
-    title: 'Same-day response',
-    body: 'Calls and emails are returned the same business day. Clients facing arrest or interview reach the out-of-hours line at any time.',
+    title: 'Commercially considered',
+    body: 'Drafting begins with the business relationship, not a generic form. The objective is language that allocates responsibility clearly and remains workable after signature.',
   },
 ] as const;

@@ -1,56 +1,62 @@
 ---
 /**
- * Practice-area teaser grid. Four cards plus a dashed cell carrying the link
- * through to the full services page; on mobile the dashed cell is dropped and
- * the link stands on its own.
+ * Commercial services teaser.
+ *
+ * Four equal cards, each one a service group within a single focused practice —
+ * never four unrelated practice areas. The whole card is the link, not just the
+ * arrow, and each one lands on its section of the Commercial Services page.
  */
 import SectionIntro from '../../ui/SectionIntro.astro';
 import Button from '../../ui/Button.astro';
 import { services } from '../../../data/services';
 ---
 
-<section id="practice-areas" class="gutter-x section-y flex flex-col gap-8 lg:gap-16">
+<section id="commercial-services" class="gutter-x section-y flex flex-col gap-8 lg:gap-16">
   <SectionIntro
-    eyebrow="Practice areas"
-    heading="Two disciplines, one standard of care."
-    blurb="Individuals facing charges and owner-managed businesses needing contracts done properly. The firm does not take on work outside these areas."
+    eyebrow="Commercial services"
+    heading="Contracts for the relationships that move business forward."
+    blurb="From an initial NDA to a company's customer, supplier, technology, or workforce agreements, the firm prepares documents around the commercial relationship they are meant to govern."
   />
 
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
     {
       services.map((service) => (
-        <a
-          href={`/services#${service.slug}`}
-          class="group flex flex-col gap-3 border border-hairline p-6 text-ink-text transition-colors duration-250 hover:border-gold lg:min-h-70 lg:gap-4 lg:p-8"
-        >
-          <div class="text-eyebrow font-medium uppercase tracking-eyebrow text-gold">
-            {service.num} · {service.audience}
-          </div>
-          <div class="flex items-baseline justify-between gap-4">
-            <h3 class="font-display text-h3-sm font-medium lg:text-h3">{service.title}</h3>
-            {/* Mobile: the arrow sits beside the title. */}
-            <span aria-hidden="true" class="text-xl leading-none text-gold lg:hidden">
+        <li class="contents">
+          <a
+            href={`/services#${service.slug}`}
+            class="group flex h-full flex-col gap-3 border border-hairline p-6 text-ink-text transition-colors duration-250 hover:border-gold lg:gap-4 lg:p-8"
+          >
+            <div class="text-eyebrow font-medium uppercase tracking-eyebrow text-gold">
+              {service.num} · {service.audience}
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <h3 class="font-display text-h3-sm font-medium lg:text-h3">{service.title}</h3>
+              {/* Mobile: the arrow sits beside the title. */}
+              <span aria-hidden="true" class="text-xl leading-none text-gold lg:hidden">
+                →
+              </span>
+            </div>
+            <p class="flex-1 text-small text-ink-muted">{service.teaser}</p>
+            {/* Desktop: it drops to the foot of the card and slides on hover. */}
+            <span
+              aria-hidden="true"
+              class="hidden text-xl leading-none text-gold transition-transform duration-250 group-hover:translate-x-2 lg:block"
+            >
               →
             </span>
-          </div>
-          <p class="flex-1 text-small text-ink-muted">{service.teaser}</p>
-          {/* Desktop: it drops to the foot of the card and slides on hover. */}
-          <span
-            aria-hidden="true"
-            class="hidden text-xl leading-none text-gold transition-transform duration-250 group-hover:translate-x-2 lg:block"
-          >
-            →
-          </span>
-        </a>
+          </a>
+        </li>
       ))
     }
+  </ul>
 
-    <div
-      class="hidden items-center justify-center border border-dashed border-hairline lg:flex lg:min-h-70 lg:col-span-2"
+  <div class="flex flex-col items-start gap-5">
+    <Button href="/services" variant="text">View all commercial services →</Button>
+    <a
+      href="/contact"
+      class="text-small text-ink-muted transition-colors duration-200 hover:text-ink-text"
     >
-      <Button href="/services" variant="text">All practice areas →</Button>
-    </div>
+      Have a different agreement? Ask the firm →
+    </a>
   </div>
-
-  <Button href="/services" variant="text" class="lg:hidden">All practice areas →</Button>
 </section>
