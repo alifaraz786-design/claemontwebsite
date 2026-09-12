@@ -14,8 +14,11 @@ import crest from '../assets/crest.png';
 import { nav, contact, site } from '../data/site';
 
 const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === '/' ? path === '/' : path.startsWith(href);
+const isActive = (href: string) => {
+  // Same-page anchors ("/#approach") are not a page; never mark them current.
+  if (href.includes('#')) return false;
+  return href === '/' ? path === '/' : path.startsWith(href);
+};
 ---
 
 <header class="relative z-20 border-b border-hairline bg-ink">

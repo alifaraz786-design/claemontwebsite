@@ -11,9 +11,9 @@ export const site = {
   shortName: 'Claemont Ridge',
   founded: 2026,
   region: '[CITY/REGION]',
-  tagline: 'Criminal defence and commercial counsel from a single office.',
+  tagline: 'Commercial contracts and business counsel.',
   description:
-    'Claemont Ridge Law advises individuals facing criminal charges and owner-managed businesses across [CITY/REGION]. Every matter is handled by the founding partner.',
+    'Claemont Ridge Law drafts, reviews, and refines commercial agreements for technology companies, established businesses, agencies, consultants, online enterprises, and independent professionals.',
   url: 'https://claemontridgelaw.com',
 } as const;
 
@@ -51,29 +51,28 @@ export type NavItem = { label: string; href: string };
 
 export const nav: readonly NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Practice Areas', href: '/services' },
+  { label: 'Commercial Services', href: '/services' },
   { label: 'Founder', href: '/founder' },
-  { label: 'Careers', href: '/careers' },
+  { label: 'Approach', href: '/#approach' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 
 export const footerColumns = [
   {
-    title: 'Practice areas',
+    title: 'Commercial services',
     links: [
-      { label: 'Criminal Defence', href: '/services#criminal-defence' },
-      { label: 'Business & Contract Law', href: '/services#business-contract-law' },
-      { label: '[PRACTICE AREA 3]', href: '/services#practice-area-3' },
-      { label: 'All practice areas', href: '/services' },
+      { label: '[SERVICE 1]', href: '/services#service-1' },
+      { label: '[SERVICE 2]', href: '/services#service-2' },
+      { label: '[SERVICE 3]', href: '/services#service-3' },
+      { label: 'All commercial services', href: '/services' },
     ],
   },
   {
     title: 'Firm',
     links: [
       { label: 'Founder', href: '/founder' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Approach', href: '/#why-this-firm' },
-      { label: 'Fees', href: '/#why-this-firm' },
+      { label: 'Approach', href: '/#approach' },
+      { label: 'Fees', href: '/#approach' },
     ],
   },
   {
