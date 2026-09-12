@@ -13,9 +13,8 @@ import { founder } from '../../../data/founder';
     <Rule />
     <div class="flex flex-col gap-2">
       <p class="font-display text-h3-sm font-normal lg:text-h3">{founder.title}</p>
-      <p class="text-small text-ink-muted">
-        {`Admitted to the Bar of ${founder.jurisdiction}, ${founder.admittedYear} · ${founder.yearsInPractice} years in practice`}
-      </p>
+      <p class="text-small text-ink-muted">{founder.credentialLine}</p>
+      <p class="text-small text-ink-muted">{founder.supportingLine}</p>
     </div>
     <p class="mt-2 max-w-md text-body text-ink-muted lg:text-body-lg">
       {founder.firstName} handles every matter the firm takes on. This page is the

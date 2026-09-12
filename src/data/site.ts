@@ -18,21 +18,12 @@ export const site = {
 } as const;
 
 export const contact = {
-  phone: '+00 000 000 0000',
-  /** Digits only, for the tel: href. */
-  phoneHref: '+000000000000',
+  /** Swap to the firm-domain address as soon as one exists. */
   email: 'claemontridgelaw@gmail.com',
-  careersEmail: 'careers@claemontridge.law',
-  founderEmail: '[first.last]@claemontridge.law',
-  addressLines: ['[Office address line 1]', '[Office address line 2]', '[CITY/REGION] [POSTCODE]'],
-  /** Used in the CTA band, where the address is set on one line. */
-  addressInline: '[OFFICE ADDRESS], [CITY/REGION]',
-  directionsUrl: '#',
-  hours: [
-    { day: 'Monday – Friday', time: '8.30am – 6.00pm' },
-    { day: 'Saturday', time: 'By appointment' },
-    { day: 'Sunday', time: 'Closed' },
-  ],
+  careersEmail: 'claemontridgelaw@gmail.com',
+  founderEmail: 'claemontridgelaw@gmail.com',
+  /** The firm is remote: no public office, no telephone, no directions. */
+  availability: 'Remote consultations available',
 } as const;
 
 /**
@@ -50,7 +41,7 @@ export type NavItem = { label: string; href: string };
 
 export const nav: readonly NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Commercial Services', href: '/services' },
+  { label: 'Contract Services', href: '/services' },
   { label: 'Founder', href: '/founder' },
   { label: 'Approach', href: '/#approach' },
   { label: 'Contact', href: '/contact' },
@@ -63,7 +54,8 @@ export const footerColumns = [
       { label: 'Commercial Agreements', href: '/services#commercial-agreements' },
       { label: 'Technology Contracts', href: '/services#technology-contracts' },
       { label: 'Digital Terms & Policies', href: '/services#digital-terms-and-policies' },
-      { label: 'All commercial services', href: '/services' },
+      { label: 'Work & Employment Agreements', href: '/services#work-and-employment-agreements' },
+      { label: 'Contract Review & Negotiation', href: '/services' },
     ],
   },
   {
@@ -71,19 +63,26 @@ export const footerColumns = [
     links: [
       { label: 'Founder', href: '/founder' },
       { label: 'Approach', href: '/#approach' },
-      { label: 'Fees', href: '/#approach' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
   {
     title: 'Contact',
     links: [
-      { label: contact.phone, href: `tel:${contact.phoneHref}` },
       { label: contact.email, href: `mailto:${contact.email}` },
       { label: 'Request a consultation', href: '/contact' },
-      { label: 'Directions', href: contact.directionsUrl },
     ],
   },
 ] as const;
 
-export const legalDisclaimer =
-  'The content of this website is provided for general information only and does not constitute legal advice. Contacting the firm does not create a solicitor–client relationship.';
+export const legalDisclaimer = [
+  'The materials on this website are provided for general information only and do not constitute legal advice. Viewing this website, submitting an inquiry, or communicating with the firm does not by itself create a lawyer client relationship. Do not send confidential information until the firm has confirmed an engagement in writing.',
+  'Services involving the law of a particular jurisdiction are offered only where professionally authorized or in coordination with appropriately qualified local counsel.',
+] as const;
+
+/** Privacy, Terms and Legal Notice all resolve to the single /legal page. */
+export const legalLinks = [
+  { label: 'Privacy', href: '/legal' },
+  { label: 'Terms', href: '/legal' },
+  { label: 'Legal Notice', href: '/legal' },
+] as const;

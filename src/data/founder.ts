@@ -1,15 +1,20 @@
-/** Founder page content. Placeholders await the client's real details. */
+/**
+ * Founder details.
+ *
+ * The firm has one lawyer, so the title is "Founder" — never "Partner".
+ * Nothing here may assert a bar admission or a number of years in practice
+ * unless the client has supplied evidence for it.
+ */
 
 export const founder = {
   fullName: 'Ali Faraz Bhatti',
-  firstName: '[FIRST NAME]',
-  title: 'Founding Attorney',
-  jurisdiction: '[JURISDICTION]',
-  admittedYear: '[YEAR]',
-  yearsInPractice: '[YEARS]',
-  credentialLine: 'Founding Partner · [CREDENTIALS] · [YEARS] years in practice · formerly [PRIOR FIRMS]',
+  firstName: 'Ali Faraz',
+  title: 'Founder',
+  /** Shown under the name on the homepage feature and the founder page. */
+  credentialLine: 'Founder · BA-LLB (Hons.), Lahore University of Management Sciences',
+  supportingLine: 'Chuo University Tokyo',
   quote:
-    'A client should never have to chase their own lawyer. If you have to ask where your matter stands, I have already failed you.',
+    'The purpose of a contract is not to make a transaction look formal. It is to make the parties\u2019 obligations clear before their expectations begin to diverge.',
   bioQuote:
     'People come to me on the worst week of their lives. The least I owe them is a straight answer and a phone that gets picked up.',
 } as const;
@@ -18,52 +23,38 @@ export const credentials = [
   {
     title: 'Education',
     items: [
-      { main: '[LAW DEGREE, e.g. Juris Doctor]', sub: '[LAW SCHOOL], [YEAR]' },
-      { main: '[UNDERGRADUATE DEGREE]', sub: '[PLACEHOLDER UNIVERSITY], [YEAR]' },
-    ],
-  },
-  {
-    title: 'Admissions & Bar Memberships',
-    items: [
-      { main: 'Bar of [JURISDICTION]', sub: 'Admitted [YEAR]' },
-      { main: '[COURT OR TRIBUNAL ADMISSION]', sub: 'Admitted [YEAR]' },
-      { main: '[STATE / REGIONAL BAR ASSOCIATION]', sub: 'Member since [YEAR]' },
+      { main: 'BA-LLB (Hons.)', sub: 'Lahore University of Management Sciences' },
+      { main: 'Chuo University', sub: 'Tokyo' },
     ],
   },
   {
     title: 'Professional Affiliations',
     items: [
       { main: '[COMMERCIAL OR CORPORATE LAW ASSOCIATION]', sub: 'Member' },
-      { main: '[COMMERCIAL LAW SECTION OR SOCIETY]', sub: 'Member' },
-      { main: '[LOCAL CHAMBER OF COMMERCE OR LEGAL AID PANEL]', sub: '[Role], [YEAR]–present' },
+      { main: '[LOCAL CHAMBER OF COMMERCE]', sub: '[Role]' },
     ],
   },
 ] as const;
 
 export const timeline = [
   {
-    year: '2026',
-    role: 'Founding Attorney, Claemont Ridge Law',
-    line: 'Opened the firm in [CITY/REGION] to advise businesses and professionals on the agreements they depend on.',
+    year: 'Now',
+    role: 'Founder, Claemont Ridge Law',
+    line: 'Advises businesses and professionals on the commercial agreements they depend on.',
   },
   {
-    year: '[YEAR]–2026',
-    role: '[Senior Associate / Partner], [PRIOR FIRM 2]',
-    line: '[One line: the nature of the work and the kinds of clients he acted for.]',
+    year: '[PERIOD]',
+    role: '[ROLE], [PRIOR FIRM 2]',
+    line: '[One line: the nature of the commercial work and the kinds of clients he acted for.]',
   },
   {
-    year: '[YEAR]–[YEAR]',
-    role: '[Associate], [PRIOR FIRM 1]',
-    line: '[One line: early trial work, first appearances, or the commercial practice group he joined.]',
+    year: '[PERIOD]',
+    role: '[ROLE], [PRIOR FIRM 1]',
+    line: '[One line: early drafting and review work, or the commercial practice group he joined.]',
   },
   {
-    year: '[YEAR]',
-    role: 'Admitted to the Bar of [JURISDICTION]',
-    line: 'Called to the bar following [CLERKSHIP / TRAINING CONTRACT / ARTICLES] at [FIRM OR COURT].',
-  },
-  {
-    year: '[YEAR]',
-    role: '[LAW DEGREE], [LAW SCHOOL]',
+    year: '[PERIOD]',
+    role: 'BA-LLB (Hons.), Lahore University of Management Sciences',
     line: '[One line: a distinction, moot, journal, or clinic worth noting; otherwise delete this line.]',
   },
 ] as const;

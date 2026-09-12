@@ -2,8 +2,9 @@
 /**
  * The gold-ruled band that closes every page.
  *
- * Defaults to the "speak to the firm" wording; Careers and Founder override it
- * via props rather than forking the component.
+ * The firm is remote and has no published telephone or office, so this carries
+ * an email address, availability, and the button through to the intake form —
+ * never a mailto for the primary action.
  */
 import Button from '../ui/Button.astro';
 import Eyebrow from '../ui/Eyebrow.astro';
@@ -11,63 +12,46 @@ import { contact } from '../../data/site';
 
 interface Props {
   eyebrow?: string;
-  blurb?: string;
-  /** Rendered above the phone number, e.g. "Work directly with [FIRST NAME]". */
   heading?: string;
-  phone?: string;
-  phoneHref?: string;
-  /** Shown under the phone number when set (founder page). */
-  secondaryEmail?: string;
+  body?: string;
   actionLabel?: string;
   actionHref?: string;
-  /** Small print beneath the action. */
-  note?: string;
   class?: string;
 }
 
 const {
-  eyebrow = 'Speak to the firm',
-  blurb = 'Consultations are confidential and the first conversation is without charge.',
-  heading,
-  phone = contact.phone,
-  phoneHref = contact.phoneHref,
-  secondaryEmail,
+  eyebrow = 'Start a conversation',
+  heading = 'Bring the agreement into focus.',
+  body = 'If you need a contract drafted, reviewed, revised, or explained, send a brief description of the agreement and the assistance you are seeking. The firm will review the inquiry and update you.',
   actionLabel = 'Request a consultation',
   actionHref = '/contact',
-  note = `${contact.email}\n${contact.addressInline}`,
   class: className = '',
 }: Props = Astro.props;
 ---
 
 <section class:list={['gutter-x pb-18 lg:pb-32', className]}>
   <div
-    class="grid gap-10 border-y border-gold py-12 lg:grid-split-7-5 lg:items-center lg:gap-6 lg:py-20"
+    class="grid gap-10 border-y border-gold py-12 lg:grid-split-7-5 lg:gap-6 lg:py-20"
   >
     <div class="flex flex-col gap-5">
       <Eyebrow>{eyebrow}</Eyebrow>
-      {heading && <h2 class="text-h2-sm font-light lg:text-h1">{heading}</h2>}
-      <p class="max-w-lg text-body text-ink-muted lg:text-body-lg">{blurb}</p>
-      <a
-        href={`tel:${phoneHref}`}
-        class="font-display text-h2-sm font-light tracking-wide text-ink-text transition-colors hover:text-gold lg:text-hero"
-      >
-        {phone}
-      </a>
-      {
-        secondaryEmail && (
-          <a
-            href={`mailto:${secondaryEmail}`}
-            class="text-body text-ink-muted transition-colors hover:text-ink-text"
-          >
-            {secondaryEmail}
-          </a>
-        )
-      }
+      <h2 class="text-h2-sm font-light lg:text-h1">{heading}</h2>
+      <p class="max-w-xl text-body text-ink-muted lg:text-body-lg">{body}</p>
     </div>
 
     <div class="flex flex-col items-start gap-5 lg:justify-self-end">
       <Button href={actionHref}>{actionLabel}</Button>
-      <p class="max-w-xs text-small whitespace-pre-line text-ink-muted">{note}</p>
+      <div class="flex flex-col gap-1 text-small text-ink-muted">
+        <a href={`mailto:${contact.email}`} class="transition-colors hover:text-ink-text">
+          {contact.email}
+        </a>
+        <span>{contact.availability}</span>
+      </div>
+      <p class="max-w-sm text-micro text-ink-muted lg:text-small">
+        Please do not send confidential information or documents with your
+        initial inquiry. Contacting the firm does not establish a lawyer client
+        relationship.
+      </p>
     </div>
   </div>
 </section>

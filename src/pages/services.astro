@@ -6,7 +6,6 @@ import Process from '../components/sections/services/Process.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
 import { services } from '../data/services';
 
-const count = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'][services.length] ?? String(services.length);
 ---
 
 <Layout
@@ -14,9 +13,9 @@ const count = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'][services.leng
   description="Commercial agreements, technology contracts, digital terms and policies, and work and employment agreements, drafted and reviewed for businesses and professionals."
 >
   <PageHeader
-    eyebrow="Commercial Services"
-    heading="Ali Faraz"
-    blurb="The firm limits its work to the matters below so that each one is handled by a lawyer who does it every week."
+    eyebrow="Commercial contracts & business counsel"
+    heading="Agreements made for the way business works."
+    blurb="Claemont Ridge Law drafts, reviews, and refines the agreements through which businesses sell, buy, build, hire, collaborate, and protect what they have created. The firm works directly with founders, companies, agencies, online businesses, independent professionals, and individuals entering important commercial or employment relationships."
   />
 
   {services.map((service) => <ServiceBlock service={service} />)}

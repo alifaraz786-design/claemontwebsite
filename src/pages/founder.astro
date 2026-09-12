@@ -6,12 +6,11 @@ import Credentials from '../components/sections/founder/Credentials.astro';
 import Experience from '../components/sections/founder/Experience.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
 import { founder } from '../data/founder';
-import { contact } from '../data/site';
 ---
 
 <Layout
   title="Founder"
-  description={`${founder.fullName}, ${founder.title} at Claemont Ridge Law. Commercial contracts and business counsel in [CITY/REGION].`}
+  description={`${founder.fullName}, ${founder.title} at Claemont Ridge Law. Commercial contracts and business counsel.`}
 >
   <FounderHero />
   <Bio />
@@ -19,10 +18,8 @@ import { contact } from '../data/site';
   <Experience />
   <CtaBand
     class="pt-18 lg:pt-32"
-    eyebrow="Direct line"
+    eyebrow="Start a conversation"
     heading={`Work directly with ${founder.firstName}`}
-    blurb="The first conversation is without charge, and it is with the lawyer who will handle your matter."
-    secondaryEmail={contact.founderEmail}
-    note={`Confidential. The first conversation is without charge, and it is with ${founder.firstName}, not an intake team.`}
+    body="Send a brief description of the agreement and the assistance you are seeking. The firm will review the inquiry and update you."
   />
 </Layout>

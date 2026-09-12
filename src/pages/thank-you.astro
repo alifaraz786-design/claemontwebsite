@@ -7,7 +7,6 @@ import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/ui/Eyebrow.astro';
 import Button from '../components/ui/Button.astro';
 import { contact } from '../data/site';
-import { founder } from '../data/founder';
 ---
 
 <Layout
@@ -27,17 +26,16 @@ import { founder } from '../data/founder';
         <span class="-mt-0.75 block h-2.75 w-5.5 -rotate-45 border-b border-l border-gold"></span>
       </div>
 
-      <Eyebrow>Enquiry received</Eyebrow>
+      <Eyebrow>Inquiry received</Eyebrow>
       <h1 class="text-h3-sm font-light lg:text-h2">
-        Thank you. Your message has reached the firm.
+        Thank you. Your inquiry has been received for an initial review of fit.
       </h1>
       <p class="max-w-lg text-body text-ink-muted">
-        Your enquiry has gone directly to {founder.firstName}. If the matter is
-        urgent, telephone{' '}
+        The firm will review what you have sent and update you by email at
         <a
-          href={`tel:${contact.phoneHref}`}
+          href={`mailto:${contact.email}`}
           class="border-b border-gold text-ink-text transition-colors hover:text-gold"
-          >{contact.phone}</a
+          >{contact.email}</a
         >.
       </p>
       <Button href="/" variant="text" class="mt-2">Return to the homepage →</Button>

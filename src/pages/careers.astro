@@ -4,7 +4,6 @@ import PageHeader from '../components/sections/PageHeader.astro';
 import WhyJoin from '../components/sections/careers/WhyJoin.astro';
 import OpenPositions from '../components/sections/careers/OpenPositions.astro';
 import CtaBand from '../components/sections/CtaBand.astro';
-import { contact } from '../data/site';
 ---
 
 <Layout
@@ -20,9 +19,7 @@ import { contact } from '../data/site';
   <OpenPositions />
   <CtaBand
     eyebrow="Questions about a role"
-    blurb="Speak to the founder directly before you apply. Conversations are informal and in confidence."
-    actionLabel="Email the founder"
-    actionHref={`mailto:${contact.careersEmail}`}
-    note={`${contact.careersEmail}\n${contact.addressInline}`}
+    heading="Speak to the firm before you apply."
+    body="Conversations are informal and in confidence."
   />
 </Layout>

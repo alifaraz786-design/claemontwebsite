@@ -3,23 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/sections/PageHeader.astro';
 import ContactDetails from '../components/sections/contact/ContactDetails.astro';
 import EnquiryForm from '../components/sections/contact/EnquiryForm.astro';
-import MapPanel from '../components/sections/contact/MapPanel.astro';
 ---
 
 <Layout
   title="Contact"
-  description="Speak to Claemont Ridge Law about a commercial agreement. Your enquiry reaches the lawyer who will handle the matter."
+  description="Start a conversation with Claemont Ridge Law about a commercial agreement. Send a brief description of the agreement and the assistance you are seeking."
 >
   <PageHeader
-    eyebrow="Contact"
-    heading="Speak to the firm."
-    blurb="Your enquiry reaches the lawyer who will handle the matter, not an intake team."
+    eyebrow="Start a conversation"
+    heading="Bring the agreement into focus."
+    blurb="If you need a contract drafted, reviewed, revised, or explained, send a brief description of the agreement and the assistance you are seeking. The firm will review the inquiry and update you."
   />
 
   <section class="gutter-x section-y grid gap-12 lg:grid-split-5-7 lg:items-start lg:gap-6">
     <ContactDetails />
     <EnquiryForm />
   </section>
-
-  <MapPanel />
 </Layout>
