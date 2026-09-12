@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import ServiceBlock from '../components/sections/services/ServiceBlock.astro';
+import Process from '../components/sections/services/Process.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import { services } from '../data/services';
+
+const count = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'][services.length] ?? String(services.length);
+---
+
+<Layout
+  title="Practice Areas"
+  description="Criminal defence and business and contract law for individuals and owner-managed businesses. The firm limits its work to the areas it handles every week."
+>
+  <PageHeader
+    eyebrow="Practice Areas"
+    heading={`${count} areas of practice. Nothing outside them.`}
+    blurb="The firm limits its work to the matters below so that each one is handled by a lawyer who does it every week."
+  />
+
+  {services.map((service) => <ServiceBlock service={service} />)}
+
+  <Process />
+  <CtaBand class="pt-18 lg:pt-32" />
+</Layout>

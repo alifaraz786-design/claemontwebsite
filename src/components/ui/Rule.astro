@@ -1,0 +1,20 @@
+---
+/**
+ * The short gold hairline that sits above a pull-quote or under a title.
+ * 48px wide, 1px tall — a recurring mark in the system, not a divider.
+ */
+interface Props {
+  tone?: 'ink' | 'bone' | 'neutral';
+  class?: string;
+}
+
+const { tone = 'ink', class: className = '' }: Props = Astro.props;
+
+const toneClass = {
+  ink: 'bg-gold',
+  bone: 'bg-gold-deep',
+  neutral: 'bg-bone-hairline',
+}[tone];
+---
+
+<div aria-hidden="true" class:list={['h-px w-12', toneClass, className]}></div>

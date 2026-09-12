@@ -1,0 +1,73 @@
+---
+/**
+ * The gold-ruled band that closes every page.
+ *
+ * Defaults to the "speak to the firm" wording; Careers and Founder override it
+ * via props rather than forking the component.
+ */
+import Button from '../ui/Button.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+import { contact } from '../../data/site';
+
+interface Props {
+  eyebrow?: string;
+  blurb?: string;
+  /** Rendered above the phone number, e.g. "Work directly with [FIRST NAME]". */
+  heading?: string;
+  phone?: string;
+  phoneHref?: string;
+  /** Shown under the phone number when set (founder page). */
+  secondaryEmail?: string;
+  actionLabel?: string;
+  actionHref?: string;
+  /** Small print beneath the action. */
+  note?: string;
+  class?: string;
+}
+
+const {
+  eyebrow = 'Speak to the firm',
+  blurb = 'Consultations are confidential and the first conversation is without charge.',
+  heading,
+  phone = contact.phone,
+  phoneHref = contact.phoneHref,
+  secondaryEmail,
+  actionLabel = 'Request a consultation',
+  actionHref = '/contact',
+  note = `${contact.email}\n${contact.addressInline}`,
+  class: className = '',
+}: Props = Astro.props;
+---
+
+<section class:list={['gutter-x pb-18 lg:pb-32', className]}>
+  <div
+    class="grid gap-10 border-y border-gold py-12 lg:grid-split-7-5 lg:items-center lg:gap-6 lg:py-20"
+  >
+    <div class="flex flex-col gap-5">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      {heading && <h2 class="text-h2-sm font-light lg:text-h1">{heading}</h2>}
+      <p class="max-w-lg text-body text-ink-muted lg:text-body-lg">{blurb}</p>
+      <a
+        href={`tel:${phoneHref}`}
+        class="font-display text-h2-sm font-light tracking-wide text-ink-text transition-colors hover:text-gold lg:text-hero"
+      >
+        {phone}
+      </a>
+      {
+        secondaryEmail && (
+          <a
+            href={`mailto:${secondaryEmail}`}
+            class="text-body text-ink-muted transition-colors hover:text-ink-text"
+          >
+            {secondaryEmail}
+          </a>
+        )
+      }
+    </div>
+
+    <div class="flex flex-col items-start gap-5 lg:justify-self-end">
+      <Button href={actionHref}>{actionLabel}</Button>
+      <p class="max-w-xs text-small whitespace-pre-line text-ink-muted">{note}</p>
+    </div>
+  </div>
+</section>

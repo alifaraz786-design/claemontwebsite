@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import ContactDetails from '../components/sections/contact/ContactDetails.astro';
+import EnquiryForm from '../components/sections/contact/EnquiryForm.astro';
+import MapPanel from '../components/sections/contact/MapPanel.astro';
+---
+
+<Layout
+  title="Contact"
+  description="Speak to Claemont Ridge Law. Enquiries are answered within one business day, by the lawyer who will handle your matter."
+>
+  <PageHeader
+    eyebrow="Contact"
+    heading="Speak to the firm."
+    blurb="Enquiries are answered within one business day, by the lawyer who will handle your matter."
+  />
+
+  <section class="gutter-x section-y grid gap-12 lg:grid-split-5-7 lg:items-start lg:gap-6">
+    <ContactDetails />
+    <EnquiryForm />
+  </section>
+
+  <MapPanel />
+</Layout>

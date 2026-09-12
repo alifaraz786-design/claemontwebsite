@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import WhyJoin from '../components/sections/careers/WhyJoin.astro';
+import OpenPositions from '../components/sections/careers/OpenPositions.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import { contact } from '../data/site';
+---
+
+<Layout
+  title="Careers"
+  description="Claemont Ridge Law is small by design and hires slowly. When it does, the people it hires work directly with the founder from the first week."
+>
+  <PageHeader
+    eyebrow="Careers"
+    heading="Help build a firm from its first year."
+    blurb="Claemont Ridge is small by design and hires slowly. When it does, the people it hires work directly with the founder from the first week."
+  />
+  <WhyJoin />
+  <OpenPositions />
+  <CtaBand
+    eyebrow="Questions about a role"
+    blurb="Speak to the founder directly before you apply. Conversations are informal and in confidence."
+    actionLabel="Email the founder"
+    actionHref={`mailto:${contact.careersEmail}`}
+    note={`${contact.careersEmail}\n${contact.addressInline}`}
+  />
+</Layout>

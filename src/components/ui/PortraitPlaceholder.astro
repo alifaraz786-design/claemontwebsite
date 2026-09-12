@@ -1,0 +1,63 @@
+---
+/**
+ * Stand-in for the founder portrait, carried over from the design so the
+ * layout is honest before the real photograph arrives.
+ *
+ * When the client supplies the headshot: drop it in src/assets, import it, and
+ * pass it as `src` — the hatching and caption disappear automatically.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src?: ImageMetadata;
+  alt?: string;
+  /** Shown only while no image is supplied. Newlines render as line breaks. */
+  caption?: string;
+  /** `4/5` for the card crop, `full` to fill a grid cell edge to edge. */
+  ratio?: '4/5' | 'full';
+  class?: string;
+}
+
+const {
+  src,
+  alt = '',
+  caption = 'founder portrait',
+  ratio = '4/5',
+  class: className = '',
+}: Props = Astro.props;
+
+const ratioClass = ratio === '4/5' ? 'aspect-4/5' : 'h-full min-h-95';
+---
+
+<div
+  class:list={[
+    'relative overflow-hidden border border-hairline bg-surface',
+    ratioClass,
+    className,
+  ]}
+>
+  {
+    src ? (
+      <Image
+        src={src}
+        alt={alt}
+        widths={[400, 800, 1200, 1600]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        class="photo-treatment absolute inset-0 h-full w-full object-cover"
+      />
+    ) : (
+      <>
+        <div
+          aria-hidden="true"
+          class="hatch absolute inset-0"
+        />
+        <p
+          class="absolute inset-0 flex items-center justify-center p-6 text-center font-mono text-eyebrow tracking-widest whitespace-pre-line text-ink-muted"
+        >
+          {caption}
+        </p>
+      </>
+    )
+  }
+</div>

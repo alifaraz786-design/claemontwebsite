@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   CLAEMONT RIDGE LAW — DESIGN TOKENS
+   Extracted verbatim from "Claemont Ridge Style Tile.dc.html".
+
+   Tailwind v4 is configured here, in CSS, not in a tailwind.config.js.
+   Every value below becomes a real utility class (--color-gold -> bg-gold,
+   text-gold, border-gold). Nothing in this file should ever be repeated as an
+   arbitrary value in markup.
+   ========================================================================= */
+
+@theme {
+  /* --- Colour -------------------------------------------------------------
+     Two grounds (ink, bone), one metal (gold). Gold is an accent: hairlines,
+     eyebrows, numerals, borders, icon strokes. Body copy is NEVER gold.
+     `gold` is legible on ink only; `gold-deep` is its counterpart on bone. */
+  --color-ink: #0b0b0c;              /* primary dark background          */
+  --color-surface: #16161a;          /* raised dark panel                */
+  --color-hairline: #2a2a30;         /* rules on ink                     */
+  --color-gold: #c6a15b;             /* accent metal — ON DARK ONLY      */
+  --color-ink-text: #edeae4;         /* body copy on ink                 */
+  --color-ink-muted: #a3a099;        /* secondary copy on ink            */
+
+  --color-bone: #f5f2ec;             /* light section background         */
+  --color-bone-raised: #ffffff;      /* raised panel on bone             */
+  --color-bone-hairline: #ddd8ce;    /* rules on bone                    */
+  --color-gold-deep: #7a5e28;        /* accent metal — ON LIGHT ONLY     */
+  --color-bone-text: #14140f;        /* body copy on bone                */
+  --color-bone-muted: #55534c;       /* secondary copy on bone           */
+
+  --color-error: #b4483c;            /* error hairline                   */
+  --color-error-text: #d1857a;       /* error message text on ink        */
+
+  /* --- Typeface ----------------------------------------------------------- */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* --- Type scale ---------------------------------------------------------
+     Named by role, not by size, so a component never encodes a pixel value.
+     Paired line-heights come from the style tile's type specimen. */
+  --text-eyebrow: 0.75rem;           /* 12 — small-caps label            */
+  --text-eyebrow--line-height: 1.4;
+  --text-micro: 0.8125rem;           /* 13 — nav, buttons, fine print    */
+  --text-micro--line-height: 1.6;
+  --text-small: 0.9375rem;           /* 15 */
+  --text-small--line-height: 1.6;
+  --text-body: 1.0625rem;            /* 17 */
+  --text-body--line-height: 1.65;
+  --text-body-lg: 1.1875rem;         /* 19 */
+  --text-body-lg--line-height: 1.65;
+  --text-h3: 1.625rem;               /* 26 */
+  --text-h3--line-height: 1.15;
+  --text-h2: 2.5rem;                 /* 40 */
+  --text-h2--line-height: 1.1;
+  --text-h1: 3.5rem;                 /* 56 */
+  --text-h1--line-height: 1.05;
+  --text-hero: 4.5rem;               /* 72 */
+  --text-hero--line-height: 1.05;
+  --text-display: 5rem;              /* 80 — founder name only           */
+  --text-display--line-height: 1.02;
+
+  /* Scale steps used only at narrow widths, or in one specific place. */
+  --text-h3-sm: 1.5rem;              /* 24 — h3 on mobile                */
+  --text-h3-sm--line-height: 1.15;
+  --text-h2-sm: 2rem;                /* 32 — h2 on mobile                */
+  --text-h2-sm--line-height: 1.1;
+  --text-quote-sm: 1.875rem;         /* 30 — pull-quote on mobile        */
+  --text-quote-sm--line-height: 1.15;
+  --text-lead: 2.125rem;             /* 34 — opening line of founder bio */
+  --text-lead--line-height: 1.25;
+  --text-phone: 3rem;                /* 48 — telephone on contact page   */
+  --text-phone--line-height: 1.05;
+  --text-numeral: 10rem;             /* 160 — service section numerals   */
+  --text-numeral--line-height: 0.85;
+  --text-glyph: 0.6875rem;           /* 11 — the ◆ list marker           */
+  --text-glyph--line-height: 1;
+
+  /* --- Tracking ----------------------------------------------------------- */
+  --tracking-eyebrow: 0.18em;        /* small-caps labels                */
+  --tracking-button: 0.14em;         /* button + link labels             */
+  --tracking-nav: 0.08em;            /* desktop nav items                */
+  --tracking-wordmark: 0.12em;       /* the wordmark                     */
+
+  /* --- Layout -------------------------------------------------------------
+     The canvas is 1440 wide with 120 of side padding, so content is 1200. */
+  --container-content: 75rem;        /* 1200 */
+  --container-measure: 42.5rem;      /* 680 — founder bio line length    */
+
+  /* --- Motion ------------------------------------------------------------- */
+  --ease-brand: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Shadow -------------------------------------------------------------
+     The only "shadow" in the system: a 1px gold rule doubling the underline of
+     a focused form field, so focus reads at a glance without a box. */
+  --shadow-field: 0 1px 0 var(--color-gold);
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================= */
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-ink-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
+  }
+
+  /* Headings inherit the display face; size is always set by a utility so the
+     scale stays visible in the markup. */
+  h1, h2, h3, blockquote {
+    font-family: var(--font-display);
+    text-wrap: pretty;
+  }
+
+  /* A single, consistent focus ring. Gold on ink, gold-deep on bone. */
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 4px;
+  }
+  .on-bone :focus-visible {
+    outline-color: var(--color-gold-deep);
+  }
+}
+
+/* ============================================================================
+   CUSTOM UTILITIES
+   These exist so recurring layout shapes never appear as arbitrary values.
+   ========================================================================= */
+
+/* The two asymmetric splits the design uses everywhere. */
+@utility grid-split-7-5 {
+  grid-template-columns: 7fr 5fr;
+}
+@utility grid-split-5-7 {
+  grid-template-columns: 5fr 7fr;
+}
+/* Careers role row: title / meta / action. */
+@utility grid-split-5-4-3 {
+  grid-template-columns: 5fr 4fr 3fr;
+}
+
+/* Section rhythm: 72 on mobile, 128 on desktop. */
+@utility section-y {
+  padding-block: --spacing(18);
+  @media (width >= 64rem) {
+    padding-block: --spacing(32);
+  }
+}
+
+/* Side gutters: 24 on mobile, 120 on desktop. Never let the page touch an edge. */
+@utility gutter-x {
+  padding-inline: --spacing(6);
+  @media (width >= 64rem) {
+    padding-inline: --spacing(30);
+  }
+}
+
+/* The animated gold underline used by every secondary/text link. Collapses to a
+   plain border on reduced motion. */
+@utility link-underline {
+  background-image: linear-gradient(var(--color-gold), var(--color-gold));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.3s var(--ease-brand);
+  padding-bottom: --spacing(1.5);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+@utility link-underline-bone {
+  background-image: linear-gradient(var(--color-gold-deep), var(--color-gold-deep));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.3s var(--ease-brand);
+  padding-bottom: --spacing(1.5);
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* Photography treatment: desaturated, held back under an ink wash so gold stays
+   the brightest thing on the page. */
+@utility photo-treatment {
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* The small rotated square used as a timeline/process marker. */
+@utility marker-diamond {
+  rotate: 45deg;
+}
+
+/* Hatched fill standing in for photography that has not been supplied yet. */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--color-surface) 0 14px,
+    #1b1b20 14px 28px
+  );
+}
+
+/* Numeral/marker-plus-content rows: a fixed first column, content in the rest.
+   Sizes match the three the design uses (56, 96 and 120). */
+@utility grid-marker-sm {
+  grid-template-columns: 3.5rem 1fr;
+}
+@utility grid-marker-md {
+  grid-template-columns: 6rem 1fr;
+}
+@utility grid-marker-lg {
+  grid-template-columns: 7.5rem 1fr;
+}
+
+/* Label/value pairs (opening hours). */
+@utility grid-pair {
+  grid-template-columns: auto 1fr;
+}
+
+/* Drawn map placeholder — a grid of blocks with two roads crossing it.
+   Replace the whole MapPanel with a styled static map once the address is set. */
+@utility map-grid {
+  background-image:
+    repeating-linear-gradient(0deg, var(--color-bone-hairline) 0 1px, transparent 1px 72px),
+    repeating-linear-gradient(90deg, var(--color-bone-hairline) 0 1px, transparent 1px 72px);
+}
+@utility map-roads {
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 215px, #e6e1d6 215px 231px, transparent 231px 520px),
+    repeating-linear-gradient(0deg, transparent 0 160px, #e6e1d6 160px 174px, transparent 174px 420px);
+}
+
+/* Checkbox beside its consent text. */
+@utility grid-consent {
+  grid-template-columns: 1.125rem 1fr;
+}
+
+/* ============================================================================
+   FORM STATE
+   Two rules that Tailwind cannot express from the element's own position:
+   both look *backwards* at a preceding sibling.
+   ========================================================================= */
+
+@layer components {
+  /* Error text is out of flow until the browser marks the field invalid, so an
+     unfilled form has no gaps where messages will later appear. `:user-invalid`
+     (not `:invalid`) means this fires only after the visitor has interacted. */
+  .field-error {
+    display: none;
+  }
+  :is(input, select, textarea):user-invalid ~ .field-error {
+    display: flex;
+  }
+
+  /* A select showing its empty prompt reads as placeholder text, not an answer. */
+  select:has(option[value=""]:checked) {
+    color: var(--color-ink-muted);
+  }
+}

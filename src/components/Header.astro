@@ -1,0 +1,217 @@
+---
+/**
+ * Site header.
+ *
+ * Desktop: wordmark left, inline nav right, gold underline on the active item.
+ * Mobile:  wordmark + hamburger, opening a full-screen ink overlay whose items
+ *          are set in the display face with gold numerals.
+ *
+ * The overlay is progressive: with JS unavailable the toggle is hidden and the
+ * nav falls back to an inline list, so every page stays navigable.
+ */
+import { Image } from 'astro:assets';
+import crest from '../assets/crest.png';
+import { nav, contact, site } from '../data/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header class="relative z-20 border-b border-hairline bg-ink">
+  <div class="gutter-x flex h-16 items-center justify-between lg:h-21">
+    <a
+      href="/"
+      class="flex items-center gap-3 text-ink-text lg:gap-4"
+      aria-label={`${site.name} — home`}
+    >
+      <Image
+        src={crest}
+        alt=""
+        widths={[32, 44, 88]}
+        sizes="(min-width: 1024px) 44px, 32px"
+        class="h-8 w-auto lg:h-11"
+        loading="eager"
+      />
+      <span
+        class="font-display text-small font-medium uppercase tracking-wordmark lg:text-xl"
+      >
+        {site.name}
+      </span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-10">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'block border-b py-1.5 text-micro uppercase tracking-nav transition-colors duration-200',
+                  isActive(item.href)
+                    ? 'border-gold text-gold'
+                    : 'border-transparent text-ink-muted hover:text-ink-text',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Mobile toggle. Revealed by the inline script below, so a no-JS
+         visitor never sees a button that cannot do anything. -->
+    <button
+      type="button"
+      id="menu-open"
+      hidden
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="-mr-3 hidden h-11 w-11 flex-col items-end justify-center gap-1.5 pl-3 lg:!hidden"
+    >
+      <span aria-hidden="true" class="block h-px w-6 bg-ink-text"></span>
+      <span aria-hidden="true" class="block h-px w-4 bg-ink-text"></span>
+    </button>
+  </div>
+
+  <!-- No-JS fallback: a plain inline list under the bar on small screens. -->
+  <nav aria-label="Primary" class="gutter-x pb-4 lg:hidden" id="nojs-nav">
+    <ul class="flex flex-wrap gap-x-6 gap-y-2">
+      {
+        nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'text-micro uppercase tracking-nav',
+                isActive(item.href) ? 'text-gold' : 'text-ink-muted',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<!-- Full-screen mobile overlay -->
+<div
+  id="mobile-menu"
+  hidden
+  class="fixed inset-0 z-50 flex flex-col bg-ink lg:hidden"
+>
+  <div class="gutter-x flex h-16 shrink-0 items-center justify-between border-b border-hairline">
+    <span class="font-display text-small font-medium uppercase tracking-wordmark">
+      {site.name}
+    </span>
+    <button
+      type="button"
+      id="menu-close"
+      aria-label="Close menu"
+      class="-mr-3 flex h-11 w-11 items-center justify-center pl-3"
+    >
+      <span aria-hidden="true" class="relative block h-6 w-6">
+        <span class="absolute top-1/2 left-0 block h-px w-6 rotate-45 bg-gold"></span>
+        <span class="absolute top-1/2 left-0 block h-px w-6 -rotate-45 bg-gold"></span>
+      </span>
+    </button>
+  </div>
+
+  <nav aria-label="Primary" class="gutter-x flex-1 overflow-y-auto py-12">
+    <ul class="flex flex-col gap-7">
+      {
+        nav.map((item, i) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'flex items-baseline gap-4 font-display text-h2 font-light',
+                isActive(item.href) ? 'text-gold' : 'text-ink-muted',
+              ]}
+            >
+              <span class="font-sans text-eyebrow tracking-eyebrow text-gold">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="gutter-x shrink-0 border-t border-hairline py-5">
+    <div class="flex flex-col gap-1.5 text-micro text-ink-muted">
+      <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const openBtn = document.getElementById('menu-open') as HTMLButtonElement | null;
+  const closeBtn = document.getElementById('menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const nojsNav = document.getElementById('nojs-nav');
+
+  if (openBtn && closeBtn && menu) {
+    // JS is available: swap the inline fallback for the overlay toggle.
+    nojsNav?.remove();
+    openBtn.hidden = false;
+    openBtn.classList.remove('hidden');
+    openBtn.classList.add('flex');
+
+    const focusable = () =>
+      Array.from(
+        menu.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'),
+      );
+
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      openBtn.setAttribute('aria-expanded', String(open));
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) focusable()[0]?.focus();
+      else openBtn.focus();
+    };
+
+    openBtn.addEventListener('click', () => setOpen(true));
+    closeBtn.addEventListener('click', () => setOpen(false));
+
+    document.addEventListener('keydown', (e) => {
+      if (menu.hidden) return;
+      if (e.key === 'Escape') {
+        setOpen(false);
+        return;
+      }
+      // Keep tab focus inside the overlay while it is open.
+      if (e.key === 'Tab') {
+        const items = focusable();
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // Returning from bfcache with the menu open would lock scrolling.
+    window.addEventListener('pageshow', () => {
+      if (menu.hidden) document.documentElement.style.overflow = '';
+    });
+  }
+</script>

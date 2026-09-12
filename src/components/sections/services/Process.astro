@@ -1,0 +1,44 @@
+---
+/**
+ * "How a matter proceeds" — four steps joined by a hairline.
+ * The connecting line is horizontal on desktop and vertical on mobile.
+ */
+import SectionIntro from '../../ui/SectionIntro.astro';
+import { processSteps } from '../../../data/services';
+---
+
+<section
+  class="on-bone gutter-x section-y flex flex-col gap-10 border-t border-bone-hairline bg-bone text-bone-text lg:gap-20"
+>
+  <SectionIntro
+    tone="bone"
+    eyebrow="How a matter proceeds"
+    heading="Four steps, the same every time."
+    blurb="You will know where your matter stands at each stage, and what happens next, before it happens."
+  />
+
+  <ol class="relative grid gap-8 lg:grid-cols-4 lg:gap-6">
+    <!-- The spine: vertical while stacked, horizontal once the steps sit in a row. -->
+    <div
+      aria-hidden="true"
+      class="absolute top-1.5 bottom-1.5 left-1.5 w-px bg-gold-deep lg:top-1.5 lg:right-0 lg:bottom-auto lg:left-0 lg:h-px lg:w-auto"
+    >
+    </div>
+
+    {
+      processSteps.map((step) => (
+        <li class="relative flex flex-col gap-3 pl-10 lg:gap-6 lg:pr-6 lg:pl-0">
+          <div
+            aria-hidden="true"
+            class="marker-diamond absolute top-1 left-0 h-3.25 w-3.25 border border-gold-deep bg-bone lg:static lg:ml-px"
+          />
+          <div class="text-eyebrow font-medium uppercase tracking-eyebrow text-gold-deep">
+            Step {step.num}
+          </div>
+          <h3 class="font-display text-h3-sm font-medium lg:text-h3">{step.title}</h3>
+          <p class="text-small text-bone-muted">{step.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>

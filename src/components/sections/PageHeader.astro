@@ -1,0 +1,32 @@
+---
+/**
+ * The compact page header shared by Practice Areas, Careers and Contact:
+ * eyebrow + h1 on the left, one supporting line on the right, closed by the
+ * gold hairline that separates it from the page body.
+ */
+import Eyebrow from '../ui/Eyebrow.astro';
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  blurb: string;
+  class?: string;
+}
+
+const { eyebrow, heading, blurb, class: className = '' }: Props = Astro.props;
+---
+
+<section
+  class:list={[
+    'gutter-x grid gap-8 border-b border-gold pt-18 pb-14 lg:grid-split-7-5 lg:items-end lg:gap-6 lg:pt-24 lg:pb-20',
+    className,
+  ]}
+>
+  <div class="flex flex-col gap-7">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h1 class="text-h2-sm font-light sm:text-h1 lg:text-hero">{heading}</h1>
+  </div>
+  <p class="max-w-md text-body text-ink-muted lg:justify-self-end lg:text-body-lg">
+    {blurb}
+  </p>
+</section>

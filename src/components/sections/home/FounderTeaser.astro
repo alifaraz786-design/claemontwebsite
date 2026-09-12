@@ -1,0 +1,26 @@
+---
+import Button from '../../ui/Button.astro';
+import Rule from '../../ui/Rule.astro';
+import PortraitPlaceholder from '../../ui/PortraitPlaceholder.astro';
+import portrait from '../../../assets/founder-portrait.jpg';
+import { founder } from '../../../data/founder';
+---
+
+<section class="gutter-x section-y grid gap-8 lg:grid-split-5-7 lg:items-center lg:gap-6">
+  <PortraitPlaceholder
+    src={portrait}
+    alt={`${founder.fullName}, ${founder.title} at Claemont Ridge Law`}
+  />
+
+  <div class="flex flex-col gap-6 lg:gap-8 lg:pl-24">
+    <Rule />
+    <blockquote class="text-quote-sm font-light italic lg:text-h2">
+      “{founder.quote}”
+    </blockquote>
+    <div class="flex flex-col gap-1.5">
+      <div class="font-display text-h3-sm font-medium lg:text-h3">{founder.fullName}</div>
+      <p class="text-small text-ink-muted">{founder.credentialLine}</p>
+    </div>
+    <Button href="/founder" variant="text">About the founder →</Button>
+  </div>
+</section>

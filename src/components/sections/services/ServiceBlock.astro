@@ -1,0 +1,65 @@
+---
+/**
+ * One practice area, set as a full-width editorial section rather than a card.
+ * The ink/bone tone comes from the service record so the page alternates as it
+ * runs down; every colour below is derived from that one value.
+ */
+import Button from '../../ui/Button.astro';
+import type { Service } from '../../../data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service }: Props = Astro.props;
+const onBone = service.tone === 'bone';
+
+const surface = onBone ? 'on-bone bg-bone text-bone-text' : 'bg-ink text-ink-text';
+const accent = onBone ? 'text-gold-deep' : 'text-gold';
+const hairline = onBone ? 'border-bone-hairline' : 'border-hairline';
+---
+
+<section id={service.slug} class:list={['gutter-x section-y grid gap-8 lg:grid-split-5-7 lg:gap-6', surface]}>
+  <div class="flex flex-col gap-5 lg:pr-12">
+    <div
+      class:list={['font-display text-numeral font-light leading-none tracking-tight', accent]}
+      aria-hidden="true"
+    >
+      {service.num}
+    </div>
+    <div
+      class:list={['mt-4 text-eyebrow font-medium uppercase tracking-eyebrow', accent]}
+    >
+      {service.audience}
+    </div>
+    <h2 class="text-h2-sm font-light lg:text-h1">{service.title}</h2>
+  </div>
+
+  <div class:list={['flex flex-col gap-10 lg:gap-14 lg:border-l lg:pl-24', hairline]}>
+    <p class="max-w-2xl text-body lg:text-body-lg">{service.body}</p>
+
+    <div class="flex flex-col gap-4">
+      <div class:list={['text-eyebrow font-medium uppercase tracking-eyebrow', accent]}>
+        Matters handled
+      </div>
+      <ul class="grid sm:grid-cols-2 sm:gap-x-12">
+        {
+          service.matters.map((matter) => (
+            <li
+              class:list={['flex items-baseline gap-4 border-t py-4 text-body', hairline]}
+            >
+              <span aria-hidden="true" class:list={["text-glyph", accent]}>
+                ◆
+              </span>
+              {matter}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <Button href="/contact" variant="text" tone={service.tone}>
+      Discuss a {service.short} matter →
+    </Button>
+  </div>
+</section>

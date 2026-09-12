@@ -1,0 +1,84 @@
+---
+/**
+ * Enquiry form.
+ *
+ * Posts straight to Web3Forms — there is no backend and no client-side
+ * submission handling, which is why this is a plain HTML form. On success
+ * Web3Forms redirects to /thank-you, which carries the designed success state.
+ */
+import Field from '../../ui/Field.astro';
+import Button from '../../ui/Button.astro';
+import { web3FormsKey, site } from '../../../data/site';
+import { services } from '../../../data/services';
+
+const matterTypes = [...services.map((service) => service.title), 'Something else'];
+const redirectUrl = new URL('/thank-you', Astro.site ?? site.url).href;
+---
+
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="flex flex-col gap-11 lg:border-l lg:border-hairline lg:pl-24"
+>
+  <input type="hidden" name="access_key" value={web3FormsKey} />
+  <input type="hidden" name="subject" value={`New enquiry — ${site.name}`} />
+  <input type="hidden" name="from_name" value={site.name} />
+  <input type="hidden" name="redirect" value={redirectUrl} />
+
+  <!-- Honeypot. Web3Forms discards any submission where this is filled in. -->
+  <input
+    type="checkbox"
+    name="botcheck"
+    class="hidden"
+    style="display:none"
+    tabindex="-1"
+    autocomplete="off"
+  />
+
+  <div class="grid gap-11 sm:grid-cols-2 sm:gap-x-8">
+    <Field label="Full name" name="name" required autocomplete="name" />
+    <Field
+      label="Email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      error="Enter a complete email address."
+    />
+    <Field
+      label="Phone"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+      error="Enter a phone number including area code."
+    />
+    <Field label="Matter type" name="matter" as="select" options={matterTypes} />
+  </div>
+
+  <Field
+    label="Message"
+    name="message"
+    as="textarea"
+    required
+    placeholder="A brief description of your matter and the best time to reach you."
+  />
+
+  <label class="grid grid-consent items-start gap-4">
+    <input
+      type="checkbox"
+      name="consent"
+      required
+      class="mt-1 h-4.5 w-4.5 appearance-none rounded-none border border-gold bg-transparent checked:bg-gold"
+    />
+    <span class="text-small text-ink-muted">
+      I understand this enquiry is confidential and that submitting it does not
+      create an attorney–client relationship. I consent to the firm holding these
+      details to respond.
+    </span>
+  </label>
+
+  <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
+    <Button type="submit">Send enquiry</Button>
+    <p class="text-micro text-ink-muted">Replies within one business day.</p>
+  </div>
+</form>

@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../../../assets/hero-architecture.jpg';
+import Button from '../../ui/Button.astro';
+import Eyebrow from '../../ui/Eyebrow.astro';
+import { site } from '../../../data/site';
+---
+
+<section
+  class="gutter-x grid gap-8 border-b border-gold pt-18 lg:min-h-204 lg:grid-split-7-5 lg:gap-6 lg:pt-0"
+>
+  <div class="flex flex-col justify-center gap-6 lg:gap-8 lg:pr-18">
+    <Eyebrow>{site.region}</Eyebrow>
+    <h1 class="text-h2-sm font-light sm:text-h1 lg:text-hero">
+      We defend people and advise the businesses they build.
+    </h1>
+    <p class="max-w-xl text-body text-ink-muted lg:text-body-lg">
+      Criminal defence and commercial counsel from a single office, with the
+      founding partner on every matter.
+    </p>
+    <div class="mt-2 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
+      <Button href="/contact">Request a consultation</Button>
+      <Button href="/services" variant="text">Our services →</Button>
+    </div>
+  </div>
+
+  <!-- Photography sits under an ink wash so gold stays the brightest thing here. -->
+  <div class="relative mt-6 h-65 lg:mt-24 lg:mb-24 lg:h-auto">
+    <Image
+      src={heroImage}
+      alt="The firm's offices"
+      widths={[390, 780, 1100]}
+      sizes="(min-width: 1024px) 34rem, 100vw"
+      class="photo-treatment absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+    />
+    <div aria-hidden="true" class="absolute inset-0 bg-ink/55"></div>
+    <Eyebrow class="absolute bottom-0 left-0 p-4 lg:p-6">
+      Est. {site.founded}
+    </Eyebrow>
+  </div>
+</section>

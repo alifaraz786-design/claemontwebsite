@@ -1,0 +1,13 @@
+dist/
+.astro/
+node_modules/
+.DS_Store
+*.log
+.env
+.env.production
+.vercel/
+
+# Duplicate originals of the design assets — "Style tile review/assets/" holds
+# the copies the artboards actually reference. 8.6MB of redundancy otherwise.
+Style tile review/uploads/
+Style tile review/.thumbnail

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050506;color:#EDEAE4;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#C6A15B;text-decoration:none}a:hover{color:#EDEAE4}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<div style="display:flex;gap:120px;align-items:flex-start;padding:80px;width:max-content;font-family:Inter,system-ui,sans-serif">
+
+<!-- ================= DESKTOP 1440 ================= -->
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099">The Firm · Desktop 1440</div>
+<div data-screen-label="Home desktop" style="width:1440px;background:#0B0B0C;color:#EDEAE4;font-size:17px;line-height:1.65;outline:1px solid #2A2A30">
+
+  <!-- Header -->
+  <header style="height:84px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2A2A30;position:relative;z-index:2">
+    <a href="#" style="display:flex;align-items:center;gap:16px;color:#EDEAE4" style-hover="color:#EDEAE4">
+      <img src="assets/crest.png" alt="" style="height:44px;width:auto">
+      <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</span>
+    </a>
+    <nav style="display:flex;gap:40px;align-items:center">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+        <a href="#" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:{{ n.color }};padding:6px 0;border-bottom:1px solid {{ n.line }};transition:color .2s" style-hover="color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">{{ n.label }}</a>
+      </sc-for>
+    </nav>
+  </header>
+
+  <!-- 1 Hero -->
+  <section style="height:816px;padding:0 120px;display:grid;grid-template-columns:7fr 5fr;gap:24px;border-bottom:1px solid #C6A15B;position:relative">
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:32px;padding-right:72px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">[CITY/REGION]</div>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:72px;line-height:1.05;text-wrap:pretty">We defend people and advise the businesses they build.</h1>
+      <p style="margin:0;font-size:19px;color:#A3A099;max-width:520px;text-wrap:pretty">Criminal defence and commercial counsel from a single office, with the founding partner on every matter.</p>
+      <div style="display:flex;gap:32px;align-items:center;margin-top:8px">
+        <a href="#" style="display:inline-flex;align-items:center;height:52px;padding:0 32px;border:1px solid #C6A15B;color:#EDEAE4;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border-radius:2px;transition:background .2s,color .2s" style-hover="background:#C6A15B;color:#0B0B0C" style-focus="outline:1px solid #C6A15B;outline-offset:4px">Request a consultation</a>
+        <a href="#" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;background-image:linear-gradient(#C6A15B,#C6A15B);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .3s ease" style-hover="background-size:100% 1px;color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">Our services →</a>
+      </div>
+    </div>
+    <div style="position:relative;margin:96px 0">
+      <div style="position:absolute;inset:0;background:#0B0B0C url('assets/stock-4.jpg') center/cover;filter:grayscale(1) contrast(1.05)"></div>
+      <div style="position:absolute;inset:0;background:rgba(11,11,12,.55)"></div>
+      <div style="position:absolute;left:0;bottom:0;padding:24px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B">Est. 2026</div>
+    </div>
+  </section>
+
+  <!-- 2 Positioning -->
+  <section style="background:#F5F2EC;color:#14140F;padding:128px 120px;display:grid;grid-template-columns:5fr 7fr;gap:24px">
+    <div style="display:flex;flex-direction:column;gap:24px;padding-right:48px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A5E28;font-weight:500">The Firm</div>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:56px;line-height:1.05;text-wrap:pretty">A new firm,<br>run the way<br>the old ones were.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px;padding-left:96px;border-left:1px solid #DDD8CE;font-size:19px;line-height:1.65;max-width:640px;text-wrap:pretty">
+      <p style="margin:0">Every matter at Claemont Ridge is handled by the lawyer you first speak to. There is no intake team and no hand-off to a junior. When you call, you reach [FOUNDER NAME] or his direct line, and you receive a reply the same business day.</p>
+      <p style="margin:0;color:#55534C">Before any work begins you receive a written scope, a fee arrangement, and a named point of contact. For criminal matters the firm keeps an out-of-hours line for clients under arrest or facing an interview. For business clients, contract work is quoted at a fixed fee wherever the scope allows.</p>
+    </div>
+  </section>
+
+  <!-- 3 Practice areas -->
+  <section style="padding:128px 120px;display:flex;flex-direction:column;gap:64px">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Practice areas</div>
+        <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:40px;line-height:1.1">Two disciplines, one standard of care.</h2>
+      </div>
+      <p style="margin:0;font-size:17px;color:#A3A099;max-width:520px;justify-self:end;text-wrap:pretty">Individuals facing charges and owner-managed businesses needing contracts done properly. The firm does not take on work outside these areas.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+      <sc-for list="{{ areas }}" as="a" hint-placeholder-count="4">
+        <a href="#" style="display:flex;flex-direction:column;gap:16px;padding:40px 32px;border:1px solid #2A2A30;background:#0B0B0C;color:#EDEAE4;min-height:280px;transition:border-color .25s" style-hover="border-color:#C6A15B;color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">
+          <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">{{ a.num }} · {{ a.kind }}</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;line-height:1.15">{{ a.title }}</div>
+          <div style="font-size:15px;line-height:1.6;color:#A3A099;flex:1">{{ a.desc }}</div>
+          <div style="color:#C6A15B;font-size:20px;line-height:1">→</div>
+        </a>
+      </sc-for>
+      <div style="display:flex;align-items:center;justify-content:center;border:1px dashed #2A2A30;min-height:280px;grid-column:span 2">
+        <a href="#" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;background-image:linear-gradient(#C6A15B,#C6A15B);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .3s ease" style-hover="background-size:100% 1px;color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">All practice areas →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Why this firm -->
+  <section style="background:#F5F2EC;color:#14140F;padding:128px 120px;display:flex;flex-direction:column;gap:64px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:560px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A5E28;font-weight:500">Why this firm</div>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:40px;line-height:1.1">What you can hold us to.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr))">
+      <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 40px;border-left:1px solid #DDD8CE">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:56px;line-height:1;color:#7A5E28">{{ r.num }}</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;line-height:1.15">{{ r.title }}</div>
+          <div style="font-size:15px;line-height:1.6;color:#55534C;text-wrap:pretty">{{ r.body }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 5 Founder teaser -->
+  <section style="padding:128px 120px;display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:center">
+    <div style="aspect-ratio:4/5;position:relative;background:#16161A;overflow:hidden;border:1px solid #2A2A30">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#16161A 0 14px,#1B1B20 14px 28px)"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#A3A099;text-align:center;padding:24px">founder portrait<br>deep shadow · 4:5 · desaturated</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:32px;padding-left:96px">
+      <div style="width:48px;height:1px;background:#C6A15B"></div>
+      <blockquote style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-style:italic;font-size:40px;line-height:1.15;text-wrap:pretty">“A client should never have to chase their own lawyer. If you have to ask where your matter stands, I have already failed you.”</blockquote>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;line-height:1.15">[FOUNDER FULL NAME]</div>
+        <div style="font-size:15px;color:#A3A099">Founding Partner · [CREDENTIALS] · [YEARS] years in practice · formerly [PRIOR FIRMS]</div>
+      </div>
+      <a href="#" style="align-self:flex-start;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;background-image:linear-gradient(#C6A15B,#C6A15B);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .3s ease" style-hover="background-size:100% 1px;color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">About the founder →</a>
+    </div>
+  </section>
+
+  <!-- 6 CTA band -->
+  <section style="padding:0 120px 128px">
+    <div style="border-top:1px solid #C6A15B;border-bottom:1px solid #C6A15B;padding:80px 0;display:grid;grid-template-columns:7fr 5fr;gap:24px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Speak to the firm</div>
+        <div style="font-size:19px;color:#A3A099;max-width:480px;text-wrap:pretty">Consultations are confidential and the first conversation is without charge.</div>
+        <a href="tel:+000000000000" style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:72px;line-height:1.05;color:#EDEAE4;letter-spacing:0.02em" style-hover="color:#C6A15B">+00 000 000 0000</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start;justify-self:end">
+        <a href="#" style="display:inline-flex;align-items:center;height:52px;padding:0 32px;border:1px solid #C6A15B;color:#EDEAE4;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border-radius:2px;transition:background .2s,color .2s" style-hover="background:#C6A15B;color:#0B0B0C" style-focus="outline:1px solid #C6A15B;outline-offset:4px">Request a consultation</a>
+        <div style="font-size:15px;color:#A3A099">enquiries@claemontridge.law<br>[OFFICE ADDRESS], [CITY/REGION]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 Footer -->
+  <footer style="border-top:1px solid #2A2A30;padding:80px 120px 40px">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:24px;padding-bottom:64px;border-bottom:1px solid #2A2A30">
+      <div style="display:flex;flex-direction:column;gap:20px;padding-right:48px">
+        <img src="assets/crest.png" alt="" style="height:72px;width:72px;object-fit:contain;object-position:left">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</div>
+        <div style="font-size:15px;color:#A3A099;max-width:320px">[Office address line 1]<br>[Office address line 2]<br>[CITY/REGION]</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr)">
+        <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:14px;padding:0 32px;border-left:1px solid #2A2A30">
+            <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500;margin-bottom:8px">{{ c.title }}</div>
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <a href="#" style="font-size:15px;color:#A3A099;transition:color .2s" style-hover="color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">{{ l }}</a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="padding-top:24px;display:flex;justify-content:space-between;gap:24px;font-size:13px;color:#A3A099;line-height:1.6">
+      <div style="max-width:820px">© 2026 Claemont Ridge Law. The content of this website is provided for general information only and does not constitute legal advice. Contacting the firm does not create a solicitor–client relationship.</div>
+      <div style="display:flex;gap:24px;flex-shrink:0"><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Privacy</a><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Terms</a></div>
+    </div>
+  </footer>
+</div>
+</div>
+
+<!-- ================= MOBILE 390 ================= -->
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099">The Firm · Mobile 390</div>
+<div data-screen-label="Home mobile" style="width:390px;background:#0B0B0C;color:#EDEAE4;font-size:17px;line-height:1.65;outline:1px solid #2A2A30">
+
+  <header style="height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2A2A30">
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="assets/crest.png" alt="" style="height:32px;width:auto">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:15px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</div>
+    </div>
+    <button aria-label="Open menu" style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:7px;background:transparent;border:0;padding:0 0 0 12px;cursor:pointer;margin-right:-12px">
+      <span style="display:block;width:24px;height:1px;background:#EDEAE4"></span>
+      <span style="display:block;width:16px;height:1px;background:#EDEAE4"></span>
+    </button>
+  </header>
+
+  <!-- 1 Hero -->
+  <section style="padding:72px 24px 0;display:flex;flex-direction:column;gap:24px;border-bottom:1px solid #C6A15B">
+    <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">[CITY/REGION]</div>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:40px;line-height:1.05;text-wrap:pretty">We defend people and advise the businesses they build.</h1>
+    <p style="margin:0;font-size:17px;color:#A3A099;text-wrap:pretty">Criminal defence and commercial counsel from a single office, with the founding partner on every matter.</p>
+    <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start">
+      <a href="#" style="display:inline-flex;align-items:center;justify-content:center;height:52px;width:100%;border:1px solid #C6A15B;color:#EDEAE4;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border-radius:2px" style-hover="background:#C6A15B;color:#0B0B0C">Request a consultation</a>
+      <a href="#" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;border-bottom:1px solid transparent" style-hover="border-bottom-color:#C6A15B;color:#EDEAE4">Our services →</a>
+    </div>
+    <div style="position:relative;height:260px;margin-top:24px">
+      <div style="position:absolute;inset:0;background:#0B0B0C url('assets/stock-4.jpg') center/cover;filter:grayscale(1) contrast(1.05)"></div>
+      <div style="position:absolute;inset:0;background:rgba(11,11,12,.55)"></div>
+      <div style="position:absolute;left:0;bottom:0;padding:16px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B">Est. 2026</div>
+    </div>
+  </section>
+
+  <!-- 2 Positioning -->
+  <section style="background:#F5F2EC;color:#14140F;padding:72px 24px;display:flex;flex-direction:column;gap:24px">
+    <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A5E28;font-weight:500">The Firm</div>
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:40px;line-height:1.05;text-wrap:pretty">A new firm, run the way the old ones were.</h2>
+    <div style="width:48px;height:1px;background:#DDD8CE"></div>
+    <p style="margin:0;font-size:17px;line-height:1.65;text-wrap:pretty">Every matter at Claemont Ridge is handled by the lawyer you first speak to. There is no intake team and no hand-off to a junior. When you call, you reach [FOUNDER NAME] or his direct line, and you receive a reply the same business day.</p>
+    <p style="margin:0;font-size:17px;line-height:1.65;color:#55534C;text-wrap:pretty">Before any work begins you receive a written scope, a fee arrangement, and a named point of contact. For criminal matters the firm keeps an out-of-hours line. For business clients, contract work is quoted at a fixed fee wherever the scope allows.</p>
+  </section>
+
+  <!-- 3 Practice areas -->
+  <section style="padding:72px 24px;display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Practice areas</div>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:32px;line-height:1.1;text-wrap:pretty">Two disciplines, one standard of care.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ areas }}" as="a" hint-placeholder-count="4">
+        <a href="#" style="display:flex;flex-direction:column;gap:12px;padding:28px 24px;border:1px solid #2A2A30;color:#EDEAE4" style-hover="border-color:#C6A15B;color:#EDEAE4">
+          <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">{{ a.num }} · {{ a.kind }}</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
+            <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:24px;line-height:1.15">{{ a.title }}</div>
+            <div style="color:#C6A15B;font-size:20px;line-height:1">→</div>
+          </div>
+          <div style="font-size:15px;line-height:1.6;color:#A3A099">{{ a.desc }}</div>
+        </a>
+      </sc-for>
+    </div>
+    <a href="#" style="align-self:flex-start;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;border-bottom:1px solid transparent" style-hover="border-bottom-color:#C6A15B;color:#EDEAE4">All practice areas →</a>
+  </section>
+
+  <!-- 4 Why -->
+  <section style="background:#F5F2EC;color:#14140F;padding:72px 24px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#7A5E28;font-weight:500">Why this firm</div>
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:32px;line-height:1.1">What you can hold us to.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="3">
+        <div style="display:grid;grid-template-columns:56px 1fr;gap:16px;padding:28px 0;border-top:1px solid #DDD8CE">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:40px;line-height:1;color:#7A5E28">{{ r.num }}</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:24px;line-height:1.15">{{ r.title }}</div>
+            <div style="font-size:15px;line-height:1.6;color:#55534C;text-wrap:pretty">{{ r.body }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 5 Founder -->
+  <section style="padding:72px 24px;display:flex;flex-direction:column;gap:32px">
+    <div style="aspect-ratio:4/5;position:relative;background:#16161A;border:1px solid #2A2A30;overflow:hidden">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#16161A 0 14px,#1B1B20 14px 28px)"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#A3A099;text-align:center;padding:24px">founder portrait<br>deep shadow · 4:5</div>
+    </div>
+    <div style="width:48px;height:1px;background:#C6A15B"></div>
+    <blockquote style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-style:italic;font-size:30px;line-height:1.15;text-wrap:pretty">“A client should never have to chase their own lawyer. If you have to ask where your matter stands, I have already failed you.”</blockquote>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:24px;line-height:1.15">[FOUNDER FULL NAME]</div>
+      <div style="font-size:15px;color:#A3A099">Founding Partner · [CREDENTIALS] · [YEARS] years in practice · formerly [PRIOR FIRMS]</div>
+    </div>
+    <a href="#" style="align-self:flex-start;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;border-bottom:1px solid transparent" style-hover="border-bottom-color:#C6A15B;color:#EDEAE4">About the founder →</a>
+  </section>
+
+  <!-- 6 CTA -->
+  <section style="padding:0 24px 72px">
+    <div style="border-top:1px solid #C6A15B;border-bottom:1px solid #C6A15B;padding:48px 0;display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Speak to the firm</div>
+      <div style="font-size:17px;color:#A3A099;text-wrap:pretty">Consultations are confidential and the first conversation is without charge.</div>
+      <a href="tel:+000000000000" style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:36px;line-height:1.05;color:#EDEAE4;letter-spacing:0.02em" style-hover="color:#C6A15B">+00 000 000 0000</a>
+      <a href="#" style="display:inline-flex;align-items:center;justify-content:center;height:52px;width:100%;border:1px solid #C6A15B;color:#EDEAE4;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border-radius:2px" style-hover="background:#C6A15B;color:#0B0B0C">Request a consultation</a>
+      <div style="font-size:15px;color:#A3A099">enquiries@claemontridge.law<br>[OFFICE ADDRESS], [CITY/REGION]</div>
+    </div>
+  </section>
+
+  <!-- 7 Footer -->
+  <footer style="border-top:1px solid #2A2A30;padding:56px 24px 32px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <img src="assets/crest.png" alt="" style="height:56px;width:56px;object-fit:contain;object-position:left">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:18px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</div>
+      <div style="font-size:15px;color:#A3A099">[Office address line 1]<br>[Office address line 2]<br>[CITY/REGION]</div>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:12px;padding:24px 0;border-top:1px solid #2A2A30">
+          <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">{{ c.title }}</div>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+            <a href="#" style="font-size:15px;color:#A3A099" style-hover="color:#EDEAE4">{{ l }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid #2A2A30;padding-top:24px;display:flex;flex-direction:column;gap:16px;font-size:13px;color:#A3A099;line-height:1.6">
+      <div>© 2026 Claemont Ridge Law. The content of this website is provided for general information only and does not constitute legal advice. Contacting the firm does not create a solicitor–client relationship.</div>
+      <div style="display:flex;gap:24px"><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Privacy</a><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Terms</a></div>
+    </div>
+  </footer>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const labels = ['Home', 'Practice Areas', 'Founder', 'Careers', 'Contact'];
+    const nav = labels.map(label => {
+      const on = label === 'Home';
+      return { label, color: on ? '#C6A15B' : '#A3A099', line: on ? '#C6A15B' : 'transparent' };
+    });
+    return {
+      nav,
+      areas: [
+        { num: '01', kind: 'Criminal', title: '[PRACTICE AREA 1]', desc: 'Two-line description of who this serves and what the firm does for them. Replace with real copy.' },
+        { num: '02', kind: 'Criminal', title: '[PRACTICE AREA 2]', desc: 'Two-line description of who this serves and what the firm does for them. Replace with real copy.' },
+        { num: '03', kind: 'Commercial', title: '[PRACTICE AREA 3]', desc: 'Two-line description of who this serves and what the firm does for them. Replace with real copy.' },
+        { num: '04', kind: 'Commercial', title: '[PRACTICE AREA 4]', desc: 'Two-line description of who this serves and what the firm does for them. Replace with real copy.' },
+      ],
+      reasons: [
+        { num: '01', title: 'The founder, directly', body: 'Your matter is handled by [FOUNDER NAME] personally. You have his direct line and email from the first meeting.' },
+        { num: '02', title: 'Fees agreed in writing', body: 'A written scope and fee arrangement before any work begins. Fixed fees for contract work wherever the scope allows.' },
+        { num: '03', title: 'Same-day response', body: 'Calls and emails are returned the same business day. Clients facing arrest or interview reach the out-of-hours line at any time.' },
+      ],
+      footerCols: [
+        { title: 'Practice areas', links: ['[PRACTICE AREA 1]', '[PRACTICE AREA 2]', '[PRACTICE AREA 3]', 'All practice areas'] },
+        { title: 'Firm', links: ['Founder', 'Careers', 'Approach', 'Fees'] },
+        { title: 'Contact', links: ['+00 000 000 0000', 'enquiries@claemontridge.law', 'Request a consultation', 'Directions'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+---
+/**
+ * Open roles, or the expression-of-interest panel when there are none.
+ *
+ * Both states were designed and both ship: which one renders is decided by
+ * `openRoles` in src/data/careers.ts. Every action leaves the site for Google
+ * Forms, so each carries the ↗ glyph and an explicit new-tab note.
+ */
+import SectionIntro from '../../ui/SectionIntro.astro';
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Button from '../../ui/Button.astro';
+import { openRoles } from '../../../data/careers';
+import { googleFormUrl, site } from '../../../data/site';
+
+const hasRoles = openRoles.length > 0;
+const roleCount = ['No', 'One', 'Two', 'Three', 'Four', 'Five'][openRoles.length] ?? String(openRoles.length);
+---
+
+<section class="gutter-x section-y flex flex-col gap-10 lg:gap-16">
+  {
+    hasRoles ? (
+      <>
+        <SectionIntro
+          eyebrow="Open positions"
+          heading={`${roleCount} ${openRoles.length === 1 ? 'role' : 'roles'}, ${site.region}`}
+          blurb="Applications are received through a short external form. Each button opens Google Forms in a new tab; nothing is stored on this site."
+        />
+
+        <ul class="flex flex-col border-t border-hairline">
+          {openRoles.map((role) => (
+            <li class="grid gap-4 border-b border-hairline py-7 lg:grid-split-5-4-3 lg:items-center lg:gap-6 lg:py-9">
+              <div class="flex flex-col gap-1.5">
+                <h3 class="font-display text-h3-sm font-medium lg:text-h3">{role.title}</h3>
+                <p class="text-small text-ink-muted">{role.summary}</p>
+              </div>
+              <div class="flex flex-wrap gap-x-8 gap-y-1 text-small text-ink-muted">
+                <span>{role.location}</span>
+                <span aria-hidden="true" class="hidden text-hairline sm:inline">|</span>
+                <span>{role.type}</span>
+              </div>
+              <div class="lg:justify-self-end">
+                <Button
+                  href={googleFormUrl}
+                  external
+                  aria-label={`Apply for ${role.title} (opens Google Forms in a new tab)`}
+                >
+                  Apply
+                </Button>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <p class="flex items-center gap-2.5 text-micro text-ink-muted">
+          <span aria-hidden="true" class="text-gold">↗</span>
+          Opens in a new tab · Google Forms
+        </p>
+      </>
+    ) : (
+      <>
+        <div class="flex flex-col gap-4">
+          <Eyebrow>Open positions</Eyebrow>
+          <h2 class="text-h2-sm font-normal lg:text-h2">No roles are listed at present.</h2>
+        </div>
+
+        <div class="relative flex flex-col items-center gap-7 border border-gold px-6 py-16 text-center lg:px-30 lg:py-24">
+          <div
+            aria-hidden="true"
+            class="marker-diamond absolute -top-1.25 left-1/2 h-2.75 w-2.75 -translate-x-1/2 border border-gold bg-ink"
+          />
+          <Eyebrow>Expressions of interest</Eyebrow>
+          <p class="max-w-3xl font-display text-h3-sm font-light lg:text-h2">
+            The firm is always interested in hearing from strong candidates,
+            whether or not a role is advertised.
+          </p>
+          <p class="max-w-xl text-body text-ink-muted">
+            Tell us who you are and the work you want to do. Every submission is
+            read by the founder, and you will hear back either way.
+          </p>
+          <Button
+            href={googleFormUrl}
+            external
+            block={false}
+            class="mt-2"
+            aria-label="Register your interest (opens Google Forms in a new tab)"
+          >
+            Register your interest
+          </Button>
+          <p class="flex items-center gap-2.5 text-micro text-ink-muted">
+            <span aria-hidden="true" class="text-gold">↗</span>
+            Opens in a new tab · Google Forms
+          </p>
+        </div>
+      </>
+    )
+  }
+</section>

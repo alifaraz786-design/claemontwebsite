@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050506;color:#EDEAE4;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#C6A15B;text-decoration:none}a:hover{color:#EDEAE4}
+*{box-sizing:border-box}
+input:focus,select:focus,textarea:focus{outline:none}
+input::placeholder,textarea::placeholder{color:#55534C}
+</style>
+</helmet>
+<div style="display:flex;gap:120px;align-items:flex-start;padding:80px;width:max-content;font-family:Inter,system-ui,sans-serif">
+
+<!-- ================= DESKTOP 1440 ================= -->
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099">Contact · Desktop 1440</div>
+<div data-screen-label="Contact desktop" style="width:1440px;background:#0B0B0C;color:#EDEAE4;font-size:17px;line-height:1.65;outline:1px solid #2A2A30">
+
+  <header style="height:84px;padding:0 120px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2A2A30">
+    <a href="#" style="display:flex;align-items:center;gap:16px;color:#EDEAE4" style-hover="color:#EDEAE4">
+      <img src="assets/crest.png" alt="" style="height:44px;width:auto">
+      <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</span>
+    </a>
+    <nav style="display:flex;gap:40px;align-items:center">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+        <a href="#" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:{{ n.color }};padding:6px 0;border-bottom:1px solid {{ n.line }};transition:color .2s" style-hover="color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">{{ n.label }}</a>
+      </sc-for>
+    </nav>
+  </header>
+
+  <!-- 1 Page header -->
+  <section style="min-height:320px;padding:96px 120px 72px;display:grid;grid-template-columns:7fr 5fr;gap:24px;align-items:end;border-bottom:1px solid #C6A15B">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Contact</div>
+      <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:72px;line-height:1.05;text-wrap:pretty">Speak to the firm.</h1>
+    </div>
+    <p style="margin:0;font-size:19px;color:#A3A099;max-width:440px;justify-self:end;text-wrap:pretty">Enquiries are answered within one business day, by the lawyer who will handle your matter.</p>
+  </section>
+
+  <!-- 2 Main -->
+  <section style="padding:128px 120px;display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;padding-right:96px">
+      <div style="display:flex;flex-direction:column;gap:8px;padding:0 0 32px;border-bottom:1px solid #C6A15B">
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Office</div>
+        <div style="font-size:17px;color:#EDEAE4">[Office address line 1]<br>[Office address line 2]<br>[CITY/REGION] [POSTCODE]</div>
+        <a href="#" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#A3A099;margin-top:8px" style-hover="color:#EDEAE4">Directions →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:32px 0;border-bottom:1px solid #C6A15B">
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Telephone</div>
+        <a href="tel:+000000000000" style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:48px;line-height:1.05;color:#EDEAE4;letter-spacing:0.02em" style-hover="color:#C6A15B">+00 000 000 0000</a>
+        <div style="font-size:15px;color:#A3A099">Out-of-hours line for clients under arrest: [NUMBER]</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:32px 0;border-bottom:1px solid #C6A15B">
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Email</div>
+        <a href="mailto:enquiries@claemontridge.law" style="font-size:19px;color:#EDEAE4" style-hover="color:#C6A15B">enquiries@claemontridge.law</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:32px 0;border-bottom:1px solid #C6A15B">
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Hours</div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 32px;font-size:15px;color:#EDEAE4">
+          <div style="color:#A3A099">Monday – Friday</div><div>8.30am – 6.00pm</div>
+          <div style="color:#A3A099">Saturday</div><div>By appointment</div>
+          <div style="color:#A3A099">Sunday</div><div>Closed</div>
+        </div>
+      </div>
+      <p style="margin:32px 0 0;font-size:13px;line-height:1.6;color:#A3A099;text-wrap:pretty">Your enquiry is confidential. Please do not include sensitive details of a criminal matter in this form; a brief description is enough, and the rest can be discussed by telephone. Contacting the firm does not by itself create an attorney–client relationship.</p>
+    </div>
+
+    <form action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:44px;padding-left:96px;border-left:1px solid #2A2A30" onSubmit="{{ preventSubmit }}">
+      <input type="hidden" name="access_key" value="[WEB3FORMS ACCESS KEY]">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px 32px">
+        <label style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Full name</span>
+          <input type="text" name="name" required="{{ true }}" autoComplete="name" style="background:transparent;border:0;border-bottom:1px solid #2A2A30;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;color:#EDEAE4;transition:border-color .2s,box-shadow .2s" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Email</span>
+          <input type="email" name="email" defaultValue="j.doe@example.com" autoComplete="email" style="background:transparent;border:0;border-bottom:1px solid #C6A15B;box-shadow:0 1px 0 #C6A15B;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;color:#EDEAE4" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+          <span style="font-size:12px;color:#55534C;letter-spacing:0.04em">↑ focus state</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Phone</span>
+          <input type="tel" name="phone" defaultValue="0000" aria-invalid="true" aria-describedby="phone-err" autoComplete="tel" style="background:transparent;border:0;border-bottom:1px solid #B4483C;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;color:#EDEAE4" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+          <span id="phone-err" style="font-size:13px;color:#D1857A;display:flex;gap:8px;align-items:baseline"><span style="color:#B4483C">—</span>Enter a phone number including area code.</span>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Matter type</span>
+          <div style="position:relative;display:flex">
+            <select name="matter" defaultValue="" style="appearance:none;-webkit-appearance:none;width:100%;background:transparent;border:0;border-bottom:1px solid #2A2A30;border-radius:0;padding:10px 32px 14px 0;font-family:Inter,sans-serif;font-size:17px;color:{{ selectColorA }};cursor:pointer;transition:border-color .2s" onChange="{{ onSelectA }}" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+              <option value="">Select one</option>
+              <sc-for list="{{ matters }}" as="m" hint-placeholder-count="5"><option value="{{ m }}">{{ m }}</option></sc-for>
+            </select>
+            <span aria-hidden="true" style="position:absolute;right:4px;top:14px;width:8px;height:8px;border-right:1px solid #C6A15B;border-bottom:1px solid #C6A15B;transform:rotate(45deg);pointer-events:none"></span>
+          </div>
+        </label>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Message</span>
+        <textarea name="message" rows="4" placeholder="A brief description of your matter and the best time to reach you." style="background:transparent;border:0;border-bottom:1px solid #2A2A30;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;line-height:1.65;color:#EDEAE4;resize:vertical;transition:border-color .2s" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B"></textarea>
+      </label>
+      <label style="display:grid;grid-template-columns:18px 1fr;gap:16px;align-items:start;cursor:pointer">
+        <input type="checkbox" name="consent" required="{{ true }}" style="appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:3px 0 0;border:1px solid #C6A15B;background:transparent;border-radius:0;cursor:pointer" style-focus="outline:1px solid #C6A15B;outline-offset:3px">
+        <span style="font-size:15px;line-height:1.6;color:#A3A099;text-wrap:pretty">I understand this enquiry is confidential and that submitting it does not create an attorney–client relationship. I consent to the firm holding these details to respond.</span>
+      </label>
+      <div style="display:flex;align-items:center;gap:32px">
+        <button type="submit" style="display:inline-flex;align-items:center;height:52px;padding:0 32px;border:1px solid #C6A15B;background:transparent;color:#EDEAE4;font-family:Inter,sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border-radius:2px;cursor:pointer;transition:background .2s,color .2s" style-hover="background:#C6A15B;color:#0B0B0C" style-focus="outline:1px solid #C6A15B;outline-offset:4px">Send enquiry</button>
+        <span style="font-size:13px;color:#A3A099">Replies within one business day.</span>
+      </div>
+    </form>
+  </section>
+
+  <!-- 3 Map -->
+  <section style="background:#F5F2EC;color:#14140F;height:420px;position:relative;overflow:hidden;border-top:1px solid #DDD8CE">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,#DDD8CE 0 1px,transparent 1px 72px),repeating-linear-gradient(90deg,#DDD8CE 0 1px,transparent 1px 72px)"></div>
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0 215px,#E6E1D6 215px 231px,transparent 231px 520px),repeating-linear-gradient(0deg,transparent 0 160px,#E6E1D6 160px 174px,transparent 174px 420px);opacity:.9"></div>
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:0">
+      <div style="width:14px;height:14px;border:1px solid #7A5E28;background:#F5F2EC;transform:rotate(45deg)"></div>
+      <div style="width:1px;height:28px;background:#7A5E28"></div>
+    </div>
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,16px);background:#0B0B0C;color:#EDEAE4;padding:16px 24px;display:flex;flex-direction:column;gap:4px;min-width:280px">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Claemont Ridge Law</div>
+      <div style="font-size:15px;color:#EDEAE4">[Office address line 1], [CITY/REGION]</div>
+      <a href="#" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#A3A099;margin-top:6px" style-hover="color:#EDEAE4">Open in Maps →</a>
+    </div>
+    <div style="position:absolute;left:120px;bottom:24px;font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#55534C">map tile · grayscale, contrast −20% · centred on [OFFICE ADDRESS] · no default styling</div>
+  </section>
+
+  <footer style="border-top:1px solid #2A2A30;padding:80px 120px 40px">
+    <div style="display:grid;grid-template-columns:5fr 7fr;gap:24px;padding-bottom:64px;border-bottom:1px solid #2A2A30">
+      <div style="display:flex;flex-direction:column;gap:20px;padding-right:48px">
+        <img src="assets/crest.png" alt="" style="height:72px;width:72px;object-fit:contain;object-position:left">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</div>
+        <div style="font-size:15px;color:#A3A099;max-width:320px">[Office address line 1]<br>[Office address line 2]<br>[CITY/REGION]</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr)">
+        <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:14px;padding:0 32px;border-left:1px solid #2A2A30">
+            <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500;margin-bottom:8px">{{ c.title }}</div>
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <a href="#" style="font-size:15px;color:#A3A099;transition:color .2s" style-hover="color:#EDEAE4" style-focus="outline:1px solid #C6A15B;outline-offset:4px">{{ l }}</a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="padding-top:24px;display:flex;justify-content:space-between;gap:24px;font-size:13px;color:#A3A099;line-height:1.6">
+      <div style="max-width:820px">© 2026 Claemont Ridge Law. The content of this website is provided for general information only and does not constitute legal advice. Contacting the firm does not create a solicitor–client relationship.</div>
+      <div style="display:flex;gap:24px;flex-shrink:0"><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Privacy</a><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Terms</a></div>
+    </div>
+  </footer>
+</div>
+</div>
+
+<!-- ================= MOBILE 390 ================= -->
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099">Contact · Mobile 390</div>
+<div data-screen-label="Contact mobile" style="width:390px;background:#0B0B0C;color:#EDEAE4;font-size:17px;line-height:1.65;outline:1px solid #2A2A30">
+
+  <header style="height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2A2A30">
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="assets/crest.png" alt="" style="height:32px;width:auto">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:15px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</div>
+    </div>
+    <button aria-label="Open menu" style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:7px;background:transparent;border:0;padding:0 0 0 12px;cursor:pointer;margin-right:-12px">
+      <span style="display:block;width:24px;height:1px;background:#EDEAE4"></span>
+      <span style="display:block;width:16px;height:1px;background:#EDEAE4"></span>
+    </button>
+  </header>
+
+  <section style="padding:72px 24px 48px;display:flex;flex-direction:column;gap:20px;border-bottom:1px solid #C6A15B">
+    <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Contact</div>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:40px;line-height:1.05">Speak to the firm.</h1>
+    <p style="margin:0;font-size:17px;color:#A3A099;text-wrap:pretty">Enquiries are answered within one business day, by the lawyer who will handle your matter.</p>
+  </section>
+
+  <section style="padding:56px 24px;display:flex;flex-direction:column">
+    <div style="display:flex;flex-direction:column;gap:6px;padding:0 0 24px;border-bottom:1px solid #C6A15B">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Telephone</div>
+      <a href="tel:+000000000000" style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:36px;line-height:1.05;color:#EDEAE4" style-hover="color:#C6A15B">+00 000 000 0000</a>
+      <div style="font-size:13px;color:#A3A099">Out-of-hours line: [NUMBER]</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;padding:24px 0;border-bottom:1px solid #C6A15B">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Email</div>
+      <a href="mailto:enquiries@claemontridge.law" style="font-size:17px;color:#EDEAE4;word-break:break-all" style-hover="color:#C6A15B">enquiries@claemontridge.law</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;padding:24px 0;border-bottom:1px solid #C6A15B">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Office</div>
+      <div style="font-size:15px">[Office address line 1], [Office address line 2], [CITY/REGION]</div>
+      <div style="font-size:13px;color:#A3A099">Mon – Fri 8.30am – 6.00pm · Sat by appointment</div>
+    </div>
+  </section>
+
+  <section style="padding:0 24px 72px">
+    <form action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:36px" onSubmit="{{ preventSubmit }}">
+      <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Enquiry form</div>
+      <label style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Full name</span>
+        <input type="text" name="name" style="background:transparent;border:0;border-bottom:1px solid #2A2A30;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;color:#EDEAE4;min-height:44px" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Email</span>
+        <input type="email" name="email" defaultValue="j.doe@example.com" style="background:transparent;border:0;border-bottom:1px solid #C6A15B;box-shadow:0 1px 0 #C6A15B;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;color:#EDEAE4;min-height:44px">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Phone</span>
+        <input type="tel" name="phone" defaultValue="0000" aria-invalid="true" style="background:transparent;border:0;border-bottom:1px solid #B4483C;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;color:#EDEAE4;min-height:44px" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+        <span style="font-size:13px;color:#D1857A;display:flex;gap:8px"><span style="color:#B4483C">—</span>Enter a phone number including area code.</span>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Matter type</span>
+        <div style="position:relative;display:flex">
+          <select name="matter" defaultValue="" style="appearance:none;-webkit-appearance:none;width:100%;background:transparent;border:0;border-bottom:1px solid #2A2A30;border-radius:0;padding:10px 32px 14px 0;font-family:Inter,sans-serif;font-size:17px;color:{{ selectColorB }};min-height:44px" onChange="{{ onSelectB }}" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B">
+            <option value="">Select one</option>
+            <sc-for list="{{ matters }}" as="m" hint-placeholder-count="5"><option value="{{ m }}">{{ m }}</option></sc-for>
+          </select>
+          <span aria-hidden="true" style="position:absolute;right:4px;top:14px;width:8px;height:8px;border-right:1px solid #C6A15B;border-bottom:1px solid #C6A15B;transform:rotate(45deg);pointer-events:none"></span>
+        </div>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Message</span>
+        <textarea name="message" rows="4" placeholder="A brief description of your matter and the best time to reach you." style="background:transparent;border:0;border-bottom:1px solid #2A2A30;border-radius:0;padding:10px 0 14px;font-family:Inter,sans-serif;font-size:17px;line-height:1.65;color:#EDEAE4;resize:vertical" style-focus="border-bottom-color:#C6A15B;box-shadow:0 1px 0 #C6A15B"></textarea>
+      </label>
+      <label style="display:grid;grid-template-columns:18px 1fr;gap:14px;align-items:start">
+        <input type="checkbox" name="consent" style="appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:3px 0 0;border:1px solid #C6A15B;background:transparent;border-radius:0">
+        <span style="font-size:15px;line-height:1.6;color:#A3A099;text-wrap:pretty">I understand this enquiry is confidential and that submitting it does not create an attorney–client relationship.</span>
+      </label>
+      <button type="submit" style="display:flex;align-items:center;justify-content:center;height:52px;width:100%;border:1px solid #C6A15B;background:transparent;color:#EDEAE4;font-family:Inter,sans-serif;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border-radius:2px;cursor:pointer" style-hover="background:#C6A15B;color:#0B0B0C">Send enquiry</button>
+      <p style="margin:0;font-size:13px;line-height:1.6;color:#A3A099;text-wrap:pretty">Please do not include sensitive details of a criminal matter here; a brief description is enough. Replies within one business day.</p>
+    </form>
+  </section>
+
+  <section style="background:#F5F2EC;height:300px;position:relative;overflow:hidden;border-top:1px solid #DDD8CE">
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,#DDD8CE 0 1px,transparent 1px 56px),repeating-linear-gradient(90deg,#DDD8CE 0 1px,transparent 1px 56px)"></div>
+    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0 120px,#E6E1D6 120px 132px,transparent 132px 300px),repeating-linear-gradient(0deg,transparent 0 110px,#E6E1D6 110px 122px,transparent 122px 300px)"></div>
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center">
+      <div style="width:14px;height:14px;border:1px solid #7A5E28;background:#F5F2EC;transform:rotate(45deg)"></div>
+      <div style="width:1px;height:24px;background:#7A5E28"></div>
+    </div>
+    <div style="position:absolute;left:24px;right:24px;bottom:24px;background:#0B0B0C;color:#EDEAE4;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px">
+      <div style="font-size:13px">[Office address line 1], [CITY/REGION]</div>
+      <a href="#" style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#C6A15B;flex-shrink:0">Maps →</a>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #2A2A30;padding:56px 24px 32px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <img src="assets/crest.png" alt="" style="height:56px;width:56px;object-fit:contain;object-position:left">
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:18px;letter-spacing:0.12em;text-transform:uppercase">Claemont Ridge Law</div>
+      <div style="font-size:15px;color:#A3A099">[Office address line 1]<br>[Office address line 2]<br>[CITY/REGION]</div>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:12px;padding:24px 0;border-top:1px solid #2A2A30">
+          <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">{{ c.title }}</div>
+          <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+            <a href="#" style="font-size:15px;color:#A3A099" style-hover="color:#EDEAE4">{{ l }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid #2A2A30;padding-top:24px;display:flex;flex-direction:column;gap:16px;font-size:13px;color:#A3A099;line-height:1.6">
+      <div>© 2026 Claemont Ridge Law. The content of this website is provided for general information only and does not constitute legal advice. Contacting the firm does not create a solicitor–client relationship.</div>
+      <div style="display:flex;gap:24px"><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Privacy</a><a href="#" style="color:#A3A099" style-hover="color:#EDEAE4">Terms</a></div>
+    </div>
+  </footer>
+</div>
+</div>
+
+<!-- ================= STATES ================= -->
+<div style="display:flex;flex-direction:column;gap:48px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099">Form · Success state (replaces form column)</div>
+    <div data-screen-label="Contact success" style="width:720px;background:#0B0B0C;color:#EDEAE4;padding:64px;outline:1px solid #2A2A30">
+      <div role="status" style="border:1px solid #C6A15B;padding:80px 64px;display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+        <div aria-hidden="true" style="width:56px;height:56px;border:1px solid #C6A15B;border-radius:50%;display:flex;align-items:center;justify-content:center">
+          <div style="width:22px;height:11px;border-left:1px solid #C6A15B;border-bottom:1px solid #C6A15B;transform:rotate(-45deg) translate(2px,-3px)"></div>
+        </div>
+        <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Enquiry received</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:40px;line-height:1.15;text-wrap:pretty">Thank you. Your message has reached the firm.</div>
+        <p style="margin:0;font-size:17px;color:#A3A099;max-width:480px;text-wrap:pretty">You will hear from [FOUNDER FIRST NAME] within one business day. If your matter is urgent, telephone <a href="tel:+000000000000" style="color:#EDEAE4;border-bottom:1px solid #C6A15B" style-hover="color:#C6A15B">+00 000 000 0000</a> at any hour.</p>
+        <a href="#" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;color:#EDEAE4;padding-bottom:6px;border-bottom:1px solid #C6A15B;margin-top:8px" style-hover="color:#C6A15B">Return to the homepage →</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099">Field states · on ink</div>
+    <div data-screen-label="Field states" style="width:720px;background:#0B0B0C;color:#EDEAE4;padding:64px;outline:1px solid #2A2A30;display:grid;grid-template-columns:1fr 1fr;gap:48px 40px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Default</span>
+        <div style="border-bottom:1px solid #2A2A30;padding:10px 0 14px;font-size:17px;color:#55534C">Placeholder</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Filled</span>
+        <div style="border-bottom:1px solid #2A2A30;padding:10px 0 14px;font-size:17px;color:#EDEAE4">Jane Doe</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#C6A15B;font-weight:500">Focus</span>
+        <div style="border-bottom:1px solid #C6A15B;box-shadow:0 1px 0 #C6A15B;padding:10px 0 14px;font-size:17px;color:#EDEAE4">Jane D<span style="display:inline-block;width:1px;height:18px;background:#C6A15B;vertical-align:-3px"></span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Error</span>
+        <div style="border-bottom:1px solid #B4483C;padding:10px 0 14px;font-size:17px;color:#EDEAE4">jane.doe@</div>
+        <span style="font-size:13px;color:#D1857A;display:flex;gap:8px"><span style="color:#B4483C">—</span>Enter a complete email address.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;grid-column:span 2;border-top:1px solid #2A2A30;padding-top:32px">
+        <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#A3A099;font-weight:500">Consent · unchecked / checked</span>
+        <div style="display:flex;gap:40px;align-items:center;font-size:15px;color:#A3A099">
+          <span style="display:inline-flex;align-items:center;gap:14px"><span style="width:18px;height:18px;border:1px solid #C6A15B;display:inline-block"></span>Unchecked</span>
+          <span style="display:inline-flex;align-items:center;gap:14px"><span style="width:18px;height:18px;border:1px solid #C6A15B;background:#C6A15B;display:inline-flex;align-items:center;justify-content:center"><span style="width:9px;height:5px;border-left:1px solid #0B0B0C;border-bottom:1px solid #0B0B0C;transform:rotate(-45deg) translate(1px,-1px)"></span></span>Checked</span>
+        </div>
+        <span style="font-size:13px;color:#55534C">Error text #D1857A on hairline #B4483C · both ≥ 4.5:1 on ink. Error is never colour alone: the em-dash marker and message accompany it.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { selA: false, selB: false };
+  renderVals() {
+    const labels = ['Home', 'Practice Areas', 'Founder', 'Careers', 'Contact'];
+    const nav = labels.map(label => {
+      const on = label === 'Contact';
+      return { label, color: on ? '#C6A15B' : '#A3A099', line: on ? '#C6A15B' : 'transparent' };
+    });
+    return {
+      nav,
+      preventSubmit: e => e.preventDefault(),
+      selectColorA: this.state.selA ? '#EDEAE4' : '#A3A099',
+      selectColorB: this.state.selB ? '#EDEAE4' : '#A3A099',
+      onSelectA: e => this.setState({ selA: !!e.target.value }),
+      onSelectB: e => this.setState({ selB: !!e.target.value }),
+      matters: ['Criminal Defence', 'Business & Contract Law', '[PRACTICE AREA 3]', '[PRACTICE AREA 4]', 'Something else'],
+      footerCols: [
+        { title: 'Practice areas', links: ['Criminal Defence', 'Business & Contract Law', '[PRACTICE AREA 3]', '[PRACTICE AREA 4]'] },
+        { title: 'Firm', links: ['Founder', 'Careers', 'Approach', 'Fees'] },
+        { title: 'Contact', links: ['+00 000 000 0000', 'enquiries@claemontridge.law', 'Request a consultation', 'Directions'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

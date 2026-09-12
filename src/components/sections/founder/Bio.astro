@@ -1,0 +1,52 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Rule from '../../ui/Rule.astro';
+import { founder } from '../../../data/founder';
+---
+
+<section class="on-bone gutter-x section-y bg-bone text-bone-text">
+  <div class="mx-auto flex max-w-measure flex-col gap-8 text-body lg:text-body-lg">
+    <Eyebrow tone="bone">About</Eyebrow>
+
+    <p>
+      <span class="mb-4 block font-display text-h3-sm font-normal lg:text-lead">
+        {founder.fullName} founded Claemont Ridge Law in 2026 after{' '}
+        {founder.yearsInPractice} years at [PRIOR FIRM 1] and [PRIOR FIRM 2],
+        where he acted for individuals facing serious charges and for the owners
+        of small businesses who needed their agreements to hold.
+      </span>
+      [He grew up in / has practised in] [CITY/REGION] and has appeared in its
+      courts throughout his career. He opened his own office because he wanted to
+      run a practice in which the person a client meets on the first day is the
+      person who carries their matter to the end.
+    </p>
+
+    <p class="text-bone-muted">
+      [Placeholder paragraph two, roughly 70 words, describing how he works with
+      clients: how he explains options, how he handles urgency, what a client can
+      expect from the first conversation. This should read as observation about
+      him, not a list of services. It stays in the third person and avoids
+      adjectives that praise him; the specifics do that work on their own.]
+    </p>
+
+    <div class="flex flex-col gap-6 py-6">
+      <Rule tone="bone" />
+      <blockquote class="text-quote-sm font-light italic lg:text-h2">
+        “{founder.bioQuote}”
+      </blockquote>
+    </div>
+
+    <p class="text-bone-muted">
+      [Placeholder paragraph three, roughly 60 words, covering his commercial
+      work: the kinds of businesses he advises, how he approaches drafting and
+      negotiation, and his view on fixed fees. One concrete example of a typical
+      engagement helps here, anonymised.]
+    </p>
+
+    <p class="text-bone-muted">
+      [Placeholder paragraph four, roughly 40 words: something outside the office.
+      Where he lives, a long-standing involvement in the community, or how he
+      spends time away from work. One or two sentences, plainly stated.]
+    </p>
+  </div>
+</section>

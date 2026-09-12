@@ -1,0 +1,73 @@
+---
+/**
+ * The only button in the system.
+ *
+ * `variant="bordered"` is the primary action: a 1px gold border that fills on
+ * hover. `variant="text"` is the secondary: a label with an underline that
+ * wipes in from the left.
+ *
+ * Renders <a> when given an href, <button> otherwise.
+ */
+interface Props {
+  href?: string;
+  variant?: 'bordered' | 'text';
+  tone?: 'ink' | 'bone';
+  /** Opens in a new tab and appends the ↗ glyph. */
+  external?: boolean;
+  /** Bordered buttons go full-width on mobile by default; set false to opt out. */
+  block?: boolean;
+  type?: 'button' | 'submit';
+  class?: string;
+  'aria-label'?: string;
+}
+
+const {
+  href,
+  variant = 'bordered',
+  tone = 'ink',
+  external = false,
+  block = true,
+  type = 'button',
+  class: className = '',
+  ...rest
+}: Props = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const bordered = {
+  ink: 'border-gold text-ink-text hover:bg-gold hover:text-ink',
+  bone: 'border-gold-deep text-bone-text hover:bg-gold-deep hover:text-bone',
+}[tone];
+
+const text = {
+  ink: 'text-ink-text link-underline',
+  bone: 'text-bone-text link-underline-bone',
+}[tone];
+
+const classes =
+  variant === 'bordered'
+    ? [
+        'inline-flex h-13 items-center justify-center gap-3.5 rounded-xs border px-8',
+        'text-micro font-medium uppercase tracking-button',
+        'transition-colors duration-200 ease-brand',
+        bordered,
+        block ? 'w-full sm:w-auto' : '',
+      ]
+    : [
+        'inline-flex items-baseline gap-2 self-start',
+        'text-micro font-medium uppercase tracking-button',
+        text,
+      ];
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : type}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class:list={[classes, className]}
+  {...rest}
+>
+  <slot />
+  {external && <span aria-hidden="true" class="text-small leading-none">↗</span>}
+</Tag>

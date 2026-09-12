@@ -1,0 +1,40 @@
+---
+import Eyebrow from '../../ui/Eyebrow.astro';
+import Rule from '../../ui/Rule.astro';
+import PortraitPlaceholder from '../../ui/PortraitPlaceholder.astro';
+import portrait from '../../../assets/founder-portrait.jpg';
+import { founder } from '../../../data/founder';
+---
+
+<section class="grid lg:min-h-190 lg:grid-cols-2">
+  <div class="gutter-x flex flex-col justify-center gap-6 py-14 lg:gap-8 lg:py-32 lg:pr-18">
+    <Eyebrow>Founder</Eyebrow>
+    <h1 class="text-h2-sm font-light sm:text-h1 lg:text-display">{founder.fullName}</h1>
+    <Rule />
+    <div class="flex flex-col gap-2">
+      <p class="font-display text-h3-sm font-normal lg:text-h3">{founder.title}</p>
+      <p class="text-small text-ink-muted">
+        {`Admitted to the Bar of ${founder.jurisdiction}, ${founder.admittedYear} · ${founder.yearsInPractice} years in practice`}
+      </p>
+    </div>
+    <p class="mt-2 max-w-md text-body text-ink-muted lg:text-body-lg">
+      {founder.firstName} handles every matter the firm takes on. This page is the
+      closest thing to meeting him before you call.
+    </p>
+  </div>
+
+  <!-- Portrait runs full-bleed to the right edge, fading into the copy column. -->
+  <div class="relative">
+    <PortraitPlaceholder
+      src={portrait}
+      alt={`${founder.fullName}, ${founder.title} at Claemont Ridge Law`}
+      ratio="full"
+      class="border-0 lg:h-full"
+    />
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 hidden bg-gradient-to-r from-ink to-transparent to-30% lg:block"
+    >
+    </div>
+  </div>
+</section>

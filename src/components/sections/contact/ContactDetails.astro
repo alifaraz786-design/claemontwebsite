@@ -1,0 +1,67 @@
+---
+/**
+ * Contact details as an editorial block — deliberately not a card. Each entry
+ * is separated by a gold hairline rather than boxed.
+ */
+import Eyebrow from '../../ui/Eyebrow.astro';
+import { contact } from '../../../data/site';
+---
+
+<div class="flex flex-col lg:pr-24">
+  <div class="flex flex-col gap-2 border-b border-gold pb-8">
+    <Eyebrow>Office</Eyebrow>
+    <address class="text-body not-italic text-ink-text">
+      {contact.addressLines.map((line) => <div>{line}</div>)}
+    </address>
+    <a
+      href={contact.directionsUrl}
+      class="mt-2 text-micro uppercase tracking-nav text-ink-muted transition-colors hover:text-ink-text"
+    >
+      Directions →
+    </a>
+  </div>
+
+  <div class="flex flex-col gap-2 border-b border-gold py-8">
+    <Eyebrow>Telephone</Eyebrow>
+    <a
+      href={`tel:${contact.phoneHref}`}
+      class="font-display text-h2-sm font-light tracking-wide text-ink-text transition-colors hover:text-gold lg:text-phone"
+    >
+      {contact.phone}
+    </a>
+    <p class="text-small text-ink-muted">
+      Out-of-hours line for clients under arrest: {contact.outOfHours}
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-2 border-b border-gold py-8">
+    <Eyebrow>Email</Eyebrow>
+    <a
+      href={`mailto:${contact.email}`}
+      class="text-body text-ink-text transition-colors hover:text-gold lg:text-body-lg"
+    >
+      {contact.email}
+    </a>
+  </div>
+
+  <div class="flex flex-col gap-2 border-b border-gold py-8">
+    <Eyebrow>Hours</Eyebrow>
+    <dl class="grid grid-pair gap-x-8 gap-y-1 text-small text-ink-text">
+      {
+        contact.hours.map((entry) => (
+          <>
+            <dt class="text-ink-muted">{entry.day}</dt>
+            <dd>{entry.time}</dd>
+          </>
+        ))
+      }
+    </dl>
+  </div>
+
+  <p class="mt-8 text-micro text-ink-muted">
+    Your enquiry is confidential. Please do not include sensitive details of a
+    criminal matter in this form; a brief description is enough, and the rest can
+    be discussed by telephone. Contacting the firm does not by itself create an
+    attorney–client relationship.
+  </p>
+</div>

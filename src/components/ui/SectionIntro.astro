@@ -1,0 +1,57 @@
+---
+/**
+ * The recurring section opener: eyebrow + heading, optionally with a paragraph
+ * pushed to the right on wide screens (the 5/7 "heading left, blurb right"
+ * arrangement used on Practice areas, Process, Open positions).
+ */
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+  /** Optional supporting line, set to the right of the heading on desktop. */
+  blurb?: string;
+  tone?: 'ink' | 'bone';
+  /** `h1` for page headers, `h2` for sections within a page. */
+  level?: 'h1' | 'h2';
+  /** Heading size. Page headers use `hero`; in-page sections use `h2`. */
+  size?: 'hero' | 'h1' | 'h2';
+  class?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  blurb,
+  tone = 'ink',
+  level: Heading = 'h2',
+  size = 'h2',
+  class: className = '',
+}: Props = Astro.props;
+
+const headingSize = {
+  hero: 'text-h2-sm font-light sm:text-h1 lg:text-hero',
+  h1: 'text-h2-sm font-light sm:text-h2 lg:text-h1',
+  h2: 'text-h2-sm font-normal lg:text-h2',
+}[size];
+
+const blurbTone = tone === 'ink' ? 'text-ink-muted' : 'text-bone-muted';
+---
+
+<div
+  class:list={[
+    'grid gap-6 lg:grid-split-5-7 lg:items-end',
+    !blurb && 'lg:grid-cols-1',
+    className,
+  ]}
+>
+  <div class="flex flex-col gap-4">
+    <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+    <Heading class:list={[headingSize]}>{heading}</Heading>
+  </div>
+  {
+    blurb && (
+      <p class:list={['max-w-lg text-body lg:justify-self-end', blurbTone]}>{blurb}</p>
+    )
+  }
+</div>

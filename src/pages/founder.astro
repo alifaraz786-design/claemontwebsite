@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FounderHero from '../components/sections/founder/FounderHero.astro';
+import Bio from '../components/sections/founder/Bio.astro';
+import Credentials from '../components/sections/founder/Credentials.astro';
+import Experience from '../components/sections/founder/Experience.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import { founder } from '../data/founder';
+import { contact } from '../data/site';
+---
+
+<Layout
+  title="Founder"
+  description={`${founder.fullName}, ${founder.title} at Claemont Ridge Law. Criminal defence and commercial practice in [CITY/REGION].`}
+>
+  <FounderHero />
+  <Bio />
+  <Credentials />
+  <Experience />
+  <CtaBand
+    class="pt-18 lg:pt-32"
+    eyebrow="Direct line"
+    heading={`Work directly with ${founder.firstName}`}
+    blurb="The first conversation is without charge, and it is with the lawyer who will handle your matter."
+    secondaryEmail={contact.founderEmail}
+    note={`Confidential. The first conversation is without charge, and it is with ${founder.firstName}, not an intake team.`}
+  />
+</Layout>

@@ -1,0 +1,29 @@
+---
+/**
+ * The 12px small-caps label that opens almost every section.
+ * Gold on ink, gold-deep on bone — pass `tone` to match the surface.
+ */
+interface Props {
+  tone?: 'ink' | 'bone' | 'muted';
+  as?: 'div' | 'span' | 'p';
+  class?: string;
+}
+
+const { tone = 'ink', as: Tag = 'div', class: className = '' }: Props = Astro.props;
+
+const toneClass = {
+  ink: 'text-gold',
+  bone: 'text-gold-deep',
+  muted: 'text-ink-muted',
+}[tone];
+---
+
+<Tag
+  class:list={[
+    'text-eyebrow font-medium uppercase tracking-eyebrow',
+    toneClass,
+    className,
+  ]}
+>
+  <slot />
+</Tag>
