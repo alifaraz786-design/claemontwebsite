@@ -1,0 +1,36 @@
+---
+/**
+ * The panel both form confirmations use. Web3Forms redirects here on success,
+ * so this is the whole of the page body — there is no client-side handling.
+ */
+import Eyebrow from '../ui/Eyebrow.astro';
+import Button from '../ui/Button.astro';
+
+interface Props {
+  eyebrow: string;
+  heading: string;
+}
+
+const { eyebrow, heading }: Props = Astro.props;
+---
+
+<section class="gutter-x section-y flex min-h-150 items-center">
+  <div
+    role="status"
+    class="flex w-full max-w-3xl flex-col items-start gap-7 border border-gold px-6 py-14 lg:px-16 lg:py-20"
+  >
+    <div
+      aria-hidden="true"
+      class="flex h-14 w-14 items-center justify-center rounded-full border border-gold"
+    >
+      <span class="-mt-0.75 block h-2.75 w-5.5 -rotate-45 border-b border-l border-gold"></span>
+    </div>
+
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h1 class="text-h3-sm font-light lg:text-h2">{heading}</h1>
+    <div class="flex max-w-xl flex-col gap-4 text-body text-ink-muted">
+      <slot />
+    </div>
+    <Button href="/" variant="text" class="mt-2">Return to the homepage →</Button>
+  </div>
+</section>

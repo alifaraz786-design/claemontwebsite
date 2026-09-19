@@ -1,6 +1,6 @@
 # Claemont Ridge Law — website
 
-Static marketing site for a new law firm. Five pages, no backend, deployed to
+Static marketing site for a new law firm. Four public pages, no backend, deployed to
 Vercel. Built from a Claude Design canvas; the source artboards are in
 `Style tile review/` and remain the visual source of truth.
 
@@ -35,6 +35,7 @@ src/
   components/
     ui/         Primitives: Button, Eyebrow, Rule, Field, SectionIntro, …
     sections/   Page sections, one folder per page + shared CtaBand/PageHeader
+                and Confirmation
     Header.astro Footer.astro
   data/         All client-editable copy. Edit content HERE, not in templates.
   layouts/      Layout.astro — the only place <head> is defined
@@ -50,7 +51,7 @@ Style tile review/  Original design artboards. Reference only; not built.
 
 Phone numbers, addresses, practice areas, roles, credentials and the founder's
 bio all come from `src/data/*.ts`. A client asking to change a phone number
-should be a one-line edit in `site.ts`, not a search across five pages.
+should be a one-line edit in `site.ts`, not a search across every page.
 Placeholders are written `[LIKE THIS]` so remaining ones are greppable:
 
 ```bash
@@ -96,18 +97,22 @@ One `<h1>` per page. Decorative marks (arrows, diamonds, rules, the map) carry
 
 ## Forms — there is no backend
 
-**Contact** posts directly to Web3Forms and redirects to `/thank-you`.
-**Careers** links out to a Google Form; nothing is collected on this site.
+Both forms live on `/contact` and post directly to Web3Forms. The **client
+inquiry** redirects to `/thank-you`; the **career inquiry** redirects to
+`/career-received`, so an applicant never lands on the client confirmation.
 
-Both keys are public-by-design and read from env with a placeholder fallback:
+Web3Forms carries no attachments on the free plan, so the career form asks for
+a link to a CV rather than an upload. Adding a real file upload means adding a
+backend — question the feature first.
+
+The key is public-by-design and read from env with a placeholder fallback:
 
 ```
 PUBLIC_WEB3FORMS_KEY=...
-PUBLIC_GOOGLE_FORM_URL=https://docs.google.com/forms/...
 ```
 
-Set both in `.env` locally and in Vercel's environment variables. Without them
-the form renders but submissions go nowhere.
+Set it in `.env` locally and in Vercel's environment variables. Without it the
+forms render but submissions go nowhere.
 
 Validation is browser-native and styled with `:user-invalid`, so error messages
 appear only after a visitor has actually interacted with a field. There is no
@@ -115,26 +120,29 @@ validation JavaScript and none should be added.
 
 ## Things that are deliberate
 
-- **The Firm is the homepage** (`/`). The client listed five pages; making "The
-  Firm" the landing page avoids inventing a sixth.
-- **Careers has two designed states.** Empty `openRoles` in `src/data/careers.ts`
-  and the page switches to the expression-of-interest panel. Both ship.
+- **The Firm is the homepage** (`/`).
+- **There is no careers route.** The client removed it; careers is now a bone
+  panel at the foot of `/contact` with its own form. Do not reinstate the page.
+- **Service groups are named twice.** `cardAudience`/`cardTitle` are the short
+  sector names on the homepage cards; `audience`/`title` are the fuller names on
+  `/services`. The client supplied both sets — do not collapse them into one.
+- **`/legal` is deliberately understated.** One notice, supplied verbatim by the
+  client, set at the micro step with no page header and linked only from the
+  footer. Do not promote it or rewrite the wording.
 - **The founder portrait is a placeholder.** `PortraitPlaceholder.astro` renders
   hatching until a real image is passed as `src` — drop the headshot in
   `src/assets`, import it, pass it, and the placeholder disappears.
-- **The map is drawn, not embedded.** A default Google Maps iframe is full
-  colour, breaks the palette, and sets third-party cookies on a page that
-  promises confidentiality. Replace with a styled static map image when the real
-  address is known.
+- **There is no map and no address.** The firm practises remotely: no office, no
+  telephone, no directions. The drawn map panel was removed at the client's
+  request and nothing asserts a location, including the JSON-LD.
 - **`LegalService` JSON-LD is in `Layout.astro`** and reads from `site.ts`. It
   feeds the Google Business panel, which matters more than usual for a firm with
   no domain authority yet. It becomes correct as soon as the placeholders are.
 
 ## Before launch
 
-- [ ] Replace every `[PLACEHOLDER]` in `src/data/`
-- [ ] Set `PUBLIC_WEB3FORMS_KEY` and `PUBLIC_GOOGLE_FORM_URL` in Vercel
+- [ ] Set `PUBLIC_WEB3FORMS_KEY` in Vercel
 - [ ] Set the real domain in `astro.config.mjs` (`site`) and `public/robots.txt`
 - [ ] Add the founder's headshot and a real office photograph
-- [ ] Write `/privacy` and `/terms` — the footer links to both and they 404
+- [ ] Move off the Gmail address once a firm-domain mailbox exists (`site.ts`)
 - [ ] Confirm attorney-advertising disclaimers for the firm's actual jurisdiction

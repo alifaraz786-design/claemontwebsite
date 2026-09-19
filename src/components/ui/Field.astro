@@ -5,12 +5,16 @@
  * Validation is left to the browser: `:user-invalid` styles the error state
  * only after the visitor has actually interacted with the field, which is why
  * there is no JavaScript here.
+ *
+ * `tone` follows the ground the form sits on: the client inquiry is on ink,
+ * the career inquiry on bone.
  */
 interface Props {
   label: string;
   name: string;
   as?: 'input' | 'textarea' | 'select';
-  type?: 'text' | 'email' | 'tel';
+  type?: 'text' | 'email' | 'tel' | 'url';
+  tone?: 'ink' | 'bone';
   required?: boolean;
   autocomplete?: string;
   placeholder?: string;
@@ -29,6 +33,7 @@ const {
   name,
   as = 'input',
   type = 'text',
+  tone = 'ink',
   required = false,
   autocomplete,
   placeholder,
@@ -41,18 +46,27 @@ const {
 
 const errorId = error ? `${name}-error` : undefined;
 
+const surface = {
+  ink: 'border-hairline text-ink-text focus:border-gold focus:shadow-field',
+  bone: 'border-bone-hairline text-bone-text focus:border-gold-deep focus:shadow-field-bone',
+}[tone];
+
+const labelTone = tone === 'ink' ? 'text-ink-muted' : 'text-bone-muted';
+const caret = tone === 'ink' ? 'border-gold' : 'border-gold-deep';
+
 const control = [
-  'w-full rounded-none border-0 border-b border-hairline bg-transparent',
-  'px-0 pt-2.5 pb-3.5 font-sans text-body text-ink-text',
+  'w-full rounded-none border-0 border-b bg-transparent',
+  'px-0 pt-2.5 pb-3.5 font-sans text-body',
   'transition-colors duration-200',
   'placeholder:text-bone-muted',
-  'focus:border-gold focus:shadow-field focus:outline-none',
+  'focus:outline-none',
   'user-invalid:border-error',
+  surface,
 ].join(' ');
 ---
 
 <label class:list={['flex flex-col gap-3', full && 'sm:col-span-2', className]}>
-  <span class="text-eyebrow font-medium uppercase tracking-eyebrow text-ink-muted">
+  <span class:list={['text-eyebrow font-medium uppercase tracking-eyebrow', labelTone]}>
     {label}{required && <span class="sr-only"> (required)</span>}
   </span>
 
@@ -79,7 +93,10 @@ const control = [
         </select>
         <span
           aria-hidden="true"
-          class="pointer-events-none absolute top-3.5 right-1 h-2 w-2 rotate-45 border-r border-b border-gold"
+          class:list={[
+            'pointer-events-none absolute top-3.5 right-1 h-2 w-2 rotate-45 border-r border-b',
+            caret,
+          ]}
         />
       </span>
     ) : (

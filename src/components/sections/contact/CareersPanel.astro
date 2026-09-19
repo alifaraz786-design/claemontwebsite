@@ -1,0 +1,157 @@
+---
+/**
+ * Careers, merged into the contact page — there is no longer a careers route.
+ *
+ * Set on bone so it reads as a distinct destination from the client inquiry
+ * above it, and given its own Web3Forms post with its own redirect so an
+ * applicant does not land on the client confirmation.
+ *
+ * No document upload: there is no backend, and Web3Forms does not carry
+ * attachments on the free plan. The CV is asked for as a link instead, which
+ * also keeps unsolicited personal documents out of the firm's inbox.
+ */
+import Field from '../../ui/Field.astro';
+import Button from '../../ui/Button.astro';
+import Eyebrow from '../../ui/Eyebrow.astro';
+import { web3FormsKey, site, contact } from '../../../data/site';
+import { interestOptions } from '../../../data/intake';
+
+const redirectUrl = new URL('/career-received', Astro.site ?? site.url).href;
+---
+
+<section
+  id="careers"
+  class="on-bone gutter-x section-y grid gap-12 scroll-mt-20 border-t border-bone-hairline bg-bone text-bone-text lg:grid-split-5-7 lg:items-start lg:gap-6"
+>
+  <div class="flex flex-col gap-6 lg:pr-24">
+    <Eyebrow tone="bone">Careers</Eyebrow>
+    <h2 class="text-h2-sm font-light lg:text-h2">Work with Claemont Ridge Law.</h2>
+    <p class="text-body text-bone-muted lg:text-body-lg">
+      Claemont Ridge Law considers applications from careful, bright minded
+      people with strong legal research, drafting, writing, operations, and
+      client service skills.
+    </p>
+    <Button href="#career-form" variant="text" tone="bone" class="mt-2">
+      Send a career inquiry →
+    </Button>
+  </div>
+
+  <form
+    id="career-form"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    class="flex flex-col gap-11 scroll-mt-20 lg:border-l lg:border-bone-hairline lg:pl-24"
+  >
+    <input type="hidden" name="access_key" value={web3FormsKey} />
+    <input type="hidden" name="subject" value={`Career Inquiry — ${site.name}`} />
+    <input type="hidden" name="from_name" value={`${site.name} careers`} />
+    <input type="hidden" name="redirect" value={redirectUrl} />
+
+    <!-- Honeypot. Web3Forms discards any submission where this is filled in. -->
+    <input
+      type="checkbox"
+      name="botcheck"
+      class="hidden"
+      style="display:none"
+      tabindex="-1"
+      autocomplete="off"
+    />
+
+    <div class="flex flex-col gap-4">
+      <h3 class="text-h3-sm font-light lg:text-h2">Career inquiry</h3>
+      <p class="max-w-xl text-body text-bone-muted">
+        Please provide a concise introduction and links to publicly available
+        work where relevant. Do not send confidential work product, client
+        information, academic records, identity documents, or references unless
+        requested.
+      </p>
+    </div>
+
+    <div class="grid gap-11 sm:grid-cols-2 sm:gap-x-8">
+      <Field
+        tone="bone"
+        label="Full name"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder="Your full name"
+      />
+      <Field
+        tone="bone"
+        label="Email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="Your email address"
+        error="Enter a complete email address."
+      />
+      <Field
+        tone="bone"
+        label="Current location"
+        name="location"
+        required
+        placeholder="Country and city"
+        full
+      />
+      <Field
+        tone="bone"
+        label="Area of interest"
+        name="interest"
+        as="select"
+        options={interestOptions}
+        required
+      />
+      <Field
+        tone="bone"
+        label="LinkedIn or portfolio"
+        name="portfolio"
+        type="url"
+        placeholder="https://"
+        error="Enter a complete web address, starting https://"
+      />
+      <Field
+        tone="bone"
+        label="CV"
+        name="cv"
+        type="url"
+        required
+        placeholder="A link to your CV — Drive, Dropbox, or a personal site"
+        error="Enter a complete web address, starting https://"
+        full
+      />
+    </div>
+
+    <Field
+      tone="bone"
+      label="Brief introduction"
+      name="message"
+      as="textarea"
+      required
+      rows={5}
+      placeholder="Tell us about your background, the work you are seeking, and why your experience may be relevant."
+    />
+
+    <label class="grid grid-consent items-start gap-4">
+      <input
+        type="checkbox"
+        name="acknowledgment"
+        required
+        class="mt-1 h-4.5 w-4.5 appearance-none rounded-none border border-gold-deep bg-transparent checked:bg-gold-deep"
+      />
+      <span class="text-small text-bone-muted">
+        I understand that submitting this form does not create an employment
+        relationship, internship, or offer of work.
+      </span>
+    </label>
+
+    <Button type="submit" tone="bone" block={false}>Send career inquiry</Button>
+
+    <p class="text-small text-bone-muted">
+      Career inquiries reach the firm at
+      <a href={`mailto:${contact.careersEmail}`} class="border-b border-gold-deep">
+        {contact.careersEmail}</a
+      >.
+    </p>
+  </form>
+</section>

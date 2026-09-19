@@ -1,28 +1,35 @@
 /**
- * Consultation intake form.
+ * Contact page form options.
  *
- * The options below are sent verbatim to Web3Forms, so editing a label here
- * changes what arrives in the firm's inbox. Keep them in this order — it runs
- * from the most common request to the least.
+ * These are sent verbatim to Web3Forms, so editing a label here changes what
+ * arrives in the firm's inbox. Keep each list in its given order — it runs from
+ * the most common request to the least.
  */
 
+/** Client inquiry — "What do you need?" */
 export const needOptions = [
-  'A new contract drafted',
-  'An existing contract reviewed',
-  'Contract revisions or negotiation support',
+  'Draft a new agreement',
+  'Review an existing agreement',
+  'Revise or negotiate an agreement',
   'NDA or confidentiality agreement',
   'Service or consulting agreement',
+  'Technology or SaaS agreement',
+  'Website, e-commerce, or digital terms',
   'Employment agreement review',
-  'Contractor agreement',
-  'SaaS, software, or licensing agreement',
-  'Website, privacy, or e-commerce terms',
-  'Supplier, customer, or partnership agreement',
-  'Something else',
+  'Independent contractor agreement',
+  'Other contract matter',
 ] as const;
 
-export const timingOptions = [
-  'No fixed deadline',
-  'Within two weeks',
-  'Within one week',
-  'Within three business days',
+/** Client inquiry — "Does a draft already exist?" */
+export const draftOptions = ['Yes', 'No', 'I am not sure'] as const;
+
+/** Career inquiry — "Area of interest" */
+export const interestOptions = [
+  'Legal research',
+  'Contract drafting support',
+  'Legal writing or editorial work',
+  'Operations or administration',
+  'Marketing or content',
+  'Internship',
+  'Other',
 ] as const;

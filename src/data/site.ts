@@ -9,8 +9,6 @@
 export const site = {
   name: 'Claemont Ridge Law',
   shortName: 'Claemont Ridge',
-  founded: 2026,
-  region: '[CITY/REGION]',
   tagline: 'Commercial contracts and business counsel.',
   description:
     'Claemont Ridge Law drafts, reviews, and refines commercial agreements for technology companies, established businesses, agencies, consultants, online enterprises, and independent professionals.',
@@ -33,9 +31,6 @@ export const contact = {
  * destination inbox and cannot be used to read submissions.
  */
 export const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '[WEB3FORMS ACCESS KEY]';
-
-/** Careers applications go to an external Google Form. Nothing is stored here. */
-export const googleFormUrl = import.meta.env.PUBLIC_GOOGLE_FORM_URL ?? '#';
 
 export type NavItem = { label: string; href: string };
 

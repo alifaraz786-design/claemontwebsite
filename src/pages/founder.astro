@@ -2,9 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import FounderHero from '../components/sections/founder/FounderHero.astro';
 import Bio from '../components/sections/founder/Bio.astro';
-import Credentials from '../components/sections/founder/Credentials.astro';
-import Experience from '../components/sections/founder/Experience.astro';
-import CtaBand from '../components/sections/CtaBand.astro';
+import Background from '../components/sections/founder/Background.astro';
 import { founder } from '../data/founder';
 ---
 
@@ -14,12 +12,5 @@ import { founder } from '../data/founder';
 >
   <FounderHero />
   <Bio />
-  <Credentials />
-  <Experience />
-  <CtaBand
-    class="pt-18 lg:pt-32"
-    eyebrow="Start a conversation"
-    heading={`Work directly with ${founder.firstName}`}
-    body="Send a brief description of the agreement and the assistance you are seeking. The firm will review the inquiry and update you."
-  />
+  <Background />
 </Layout>

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/sections/PageHeader.astro';
 import ContactDetails from '../components/sections/contact/ContactDetails.astro';
 import EnquiryForm from '../components/sections/contact/EnquiryForm.astro';
+import CareersPanel from '../components/sections/contact/CareersPanel.astro';
 ---
 
 <Layout
@@ -10,7 +11,7 @@ import EnquiryForm from '../components/sections/contact/EnquiryForm.astro';
   description="Start a conversation with Claemont Ridge Law about a commercial agreement. Send a brief description of the agreement and the assistance you are seeking."
 >
   <PageHeader
-    eyebrow="Start a conversation"
+    eyebrow="Contact"
     heading="Bring the agreement into focus."
     blurb="If you need a contract drafted, reviewed, revised, or explained, send a brief description of the agreement and the assistance you are seeking. The firm will review the inquiry and update you."
   />
@@ -19,4 +20,6 @@ import EnquiryForm from '../components/sections/contact/EnquiryForm.astro';
     <ContactDetails />
     <EnquiryForm />
   </section>
+
+  <CareersPanel />
 </Layout>

@@ -1,0 +1,54 @@
+---
+/**
+ * Education, experience, and scholarship.
+ *
+ * Set on bone rather than ink at the client's request: this is the section a
+ * reader scans for facts, so it is the one light, high-contrast block on the
+ * page. Three columns on desktop, stacked on mobile, with the bar admission
+ * carried on its own row beneath them.
+ */
+import SectionIntro from '../../ui/SectionIntro.astro';
+import { background, barAdmission } from '../../../data/founder';
+---
+
+<section
+  class="on-bone gutter-x section-y flex flex-col gap-10 border-t border-bone-hairline bg-bone text-bone-text lg:gap-16"
+>
+  <SectionIntro
+    tone="bone"
+    eyebrow="Background"
+    heading="Education, experience, and scholarship"
+  />
+
+  <div class="grid gap-10 lg:grid-cols-3 lg:gap-0">
+    {
+      background.map((column) => (
+        <div class="flex flex-col gap-6 lg:border-l lg:border-bone-hairline lg:px-10 lg:first:pl-0">
+          <h3 class="border-b border-bone-hairline pb-4 text-eyebrow font-medium uppercase tracking-eyebrow text-gold-deep">
+            {column.title}
+          </h3>
+          <dl class="flex flex-col gap-6">
+            {column.entries.map((entry) => (
+              <div class="flex flex-col gap-1">
+                <dt class="text-body text-bone-text">{entry.main}</dt>
+                {entry.lines?.map((line) => (
+                  <dd class="text-small text-bone-muted">{line}</dd>
+                ))}
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="flex flex-col gap-4 border-t border-bone-hairline pt-8">
+    <h3 class="text-eyebrow font-medium uppercase tracking-eyebrow text-gold-deep">
+      {barAdmission.title}
+    </h3>
+    <div class="flex flex-col gap-1">
+      <p class="text-body text-bone-text">{barAdmission.main}</p>
+      <p class="text-small text-bone-muted">{barAdmission.line}</p>
+    </div>
+  </div>
+</section>

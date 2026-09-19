@@ -1,44 +1,33 @@
 ---
 /**
- * Web3Forms redirects here on a successful submission. Not indexed — it is a
+ * Web3Forms redirects here after a client inquiry. Not indexed — it is a
  * confirmation, not a page anyone should land on from search.
  */
 import Layout from '../layouts/Layout.astro';
-import Eyebrow from '../components/ui/Eyebrow.astro';
-import Button from '../components/ui/Button.astro';
+import Confirmation from '../components/sections/Confirmation.astro';
 import { contact } from '../data/site';
 ---
 
 <Layout
-  title="Enquiry received"
-  description="Your enquiry has reached Claemont Ridge Law."
+  title="Inquiry received"
+  description="Your inquiry has reached Claemont Ridge Law."
   indexable={false}
 >
-  <section class="gutter-x section-y flex min-h-150 items-center">
-    <div
-      role="status"
-      class="flex w-full max-w-3xl flex-col items-start gap-7 border border-gold px-6 py-14 lg:px-16 lg:py-20"
-    >
-      <div
-        aria-hidden="true"
-        class="flex h-14 w-14 items-center justify-center rounded-full border border-gold"
-      >
-        <span class="-mt-0.75 block h-2.75 w-5.5 -rotate-45 border-b border-l border-gold"></span>
-      </div>
-
-      <Eyebrow>Inquiry received</Eyebrow>
-      <h1 class="text-h3-sm font-light lg:text-h2">
-        Thank you. Your inquiry has been received for an initial review of fit.
-      </h1>
-      <p class="max-w-lg text-body text-ink-muted">
-        The firm will review what you have sent and update you by email at
-        <a
-          href={`mailto:${contact.email}`}
-          class="border-b border-gold text-ink-text transition-colors hover:text-gold"
-          >{contact.email}</a
-        >.
-      </p>
-      <Button href="/" variant="text" class="mt-2">Return to the homepage →</Button>
-    </div>
-  </section>
+  <Confirmation
+    eyebrow="Inquiry received"
+    heading="Your inquiry has been received for an initial review."
+  >
+    <p>
+      Claemont Ridge Law has not accepted the matter or assumed responsibility
+      for any deadline unless and until an engagement is confirmed in writing.
+    </p>
+    <p>
+      The firm will review what you have sent and update you by email at
+      <a
+        href={`mailto:${contact.email}`}
+        class="border-b border-gold text-ink-text transition-colors hover:text-gold"
+        >{contact.email}</a
+      >.
+    </p>
+  </Confirmation>
 </Layout>

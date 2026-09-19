@@ -1,0 +1,24 @@
+---
+/**
+ * Web3Forms redirects here after a career inquiry. Separate from /thank-you so
+ * an applicant never lands on the client-inquiry confirmation. Not indexed.
+ */
+import Layout from '../layouts/Layout.astro';
+import Confirmation from '../components/sections/Confirmation.astro';
+---
+
+<Layout
+  title="Career inquiry received"
+  description="Your career inquiry has reached Claemont Ridge Law."
+  indexable={false}
+>
+  <Confirmation
+    eyebrow="Career inquiry received"
+    heading="Thank you for your interest in Claemont Ridge Law."
+  >
+    <p>
+      Your information has been received. Submission does not create an
+      employment relationship or an offer of work.
+    </p>
+  </Confirmation>
+</Layout>

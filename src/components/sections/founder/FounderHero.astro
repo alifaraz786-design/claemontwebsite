@@ -11,15 +11,8 @@ import { founder } from '../../../data/founder';
     <Eyebrow>Founder</Eyebrow>
     <h1 class="text-h2-sm font-light sm:text-h1 lg:text-display">{founder.fullName}</h1>
     <Rule />
-    <div class="flex flex-col gap-2">
-      <p class="font-display text-h3-sm font-normal lg:text-h3">{founder.title}</p>
-      <p class="text-small text-ink-muted">{founder.credentialLine}</p>
-      <p class="text-small text-ink-muted">{founder.supportingLine}</p>
-    </div>
-    <p class="mt-2 max-w-md text-body text-ink-muted lg:text-body-lg">
-      {founder.firstName} handles every matter the firm takes on. This page is the
-      closest thing to meeting him before you call.
-    </p>
+    <p class="font-display text-h3-sm font-normal lg:text-h3">{founder.professionalLine}</p>
+    <p class="mt-2 max-w-md text-body text-ink-muted lg:text-body-lg">{founder.intro}</p>
   </div>
 
   <!-- Portrait runs full-bleed to the right edge, fading into the copy column. -->

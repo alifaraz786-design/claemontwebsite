@@ -49,7 +49,9 @@ import { site, footerColumns, legalDisclaimer, legalLinks } from '../data/site';
       <p>© {site.name}. {legalDisclaimer[0]}</p>
       <p>{legalDisclaimer[1]}</p>
     </div>
-    <div class="flex shrink-0 gap-6 text-small">
+    <!-- Set at the micro step: present in the corner where a reader expects
+         it, without competing with anything else in the footer. -->
+    <div class="flex shrink-0 gap-6 text-micro">
       {
         legalLinks.map((link) => (
           <a href={link.href} class="text-ink-muted transition-colors hover:text-ink-text">

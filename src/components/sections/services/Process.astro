@@ -1,9 +1,10 @@
 ---
 /**
- * "How a matter proceeds" — four steps joined by a hairline.
+ * "How an engagement proceeds" — four steps joined by a hairline.
  * The connecting line is horizontal on desktop and vertical on mobile.
  */
 import SectionIntro from '../../ui/SectionIntro.astro';
+import Button from '../../ui/Button.astro';
 import { processSteps } from '../../../data/services';
 ---
 
@@ -12,9 +13,9 @@ import { processSteps } from '../../../data/services';
 >
   <SectionIntro
     tone="bone"
-    eyebrow="How a matter proceeds"
-    heading="Four steps, the same every time."
-    blurb="You will know where your matter stands at each stage, and what happens next, before it happens."
+    eyebrow="How an engagement proceeds"
+    heading="A defined process, from first brief to final document."
+    blurb="The process is adapted to the agreement, but the essential stages remain clear. You will know what work has been accepted, what information is needed, and what the next step will be."
   />
 
   <ol class="relative grid gap-8 lg:grid-cols-4 lg:gap-6">
@@ -41,4 +42,6 @@ import { processSteps } from '../../../data/services';
       ))
     }
   </ol>
+
+  <Button href="/contact" variant="text" tone="bone">Start an inquiry →</Button>
 </section>

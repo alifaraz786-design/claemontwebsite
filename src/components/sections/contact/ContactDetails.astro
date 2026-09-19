@@ -6,6 +6,7 @@
  * telephone line and no directions. Email and availability are the whole of it.
  */
 import Eyebrow from '../../ui/Eyebrow.astro';
+import Button from '../../ui/Button.astro';
 import { contact } from '../../../data/site';
 ---
 
@@ -23,6 +24,15 @@ import { contact } from '../../../data/site';
   <div class="flex flex-col gap-2 border-b border-gold py-8">
     <Eyebrow>Consultations</Eyebrow>
     <p class="text-body text-ink-text">{contact.availability}</p>
+  </div>
+
+  <div class="flex flex-col gap-3 border-b border-gold py-8">
+    <Eyebrow>Careers</Eyebrow>
+    <p class="text-small text-ink-muted">
+      Applications are received through the career inquiry form at the foot of
+      this page.
+    </p>
+    <Button href="#careers" variant="text" class="mt-1">View careers →</Button>
   </div>
 
   <p class="mt-8 text-small text-ink-muted">

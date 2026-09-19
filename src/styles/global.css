@@ -69,8 +69,6 @@
   --text-quote-sm--line-height: 1.15;
   --text-lead: 2.125rem;             /* 34 — opening line of founder bio */
   --text-lead--line-height: 1.25;
-  --text-phone: 3rem;                /* 48 — telephone on contact page   */
-  --text-phone--line-height: 1.05;
   --text-numeral: 10rem;             /* 160 — service section numerals   */
   --text-numeral--line-height: 0.85;
   --text-glyph: 0.6875rem;           /* 11 — the ◆ list marker           */
@@ -94,6 +92,7 @@
      The only "shadow" in the system: a 1px gold rule doubling the underline of
      a focused form field, so focus reads at a glance without a box. */
   --shadow-field: 0 1px 0 var(--color-gold);
+  --shadow-field-bone: 0 1px 0 var(--color-gold-deep);
 }
 
 /* ============================================================================
@@ -156,10 +155,6 @@
 }
 @utility grid-split-5-7 {
   grid-template-columns: 5fr 7fr;
-}
-/* Careers role row: title / meta / action. */
-@utility grid-split-5-4-3 {
-  grid-template-columns: 5fr 4fr 3fr;
 }
 
 /* Section rhythm: 72 on mobile, 128 on desktop. */
@@ -225,34 +220,9 @@
   );
 }
 
-/* Numeral/marker-plus-content rows: a fixed first column, content in the rest.
-   Sizes match the three the design uses (56, 96 and 120). */
+/* Numeral-plus-content rows: a fixed first column, content in the rest. */
 @utility grid-marker-sm {
   grid-template-columns: 3.5rem 1fr;
-}
-@utility grid-marker-md {
-  grid-template-columns: 6rem 1fr;
-}
-@utility grid-marker-lg {
-  grid-template-columns: 7.5rem 1fr;
-}
-
-/* Label/value pairs (opening hours). */
-@utility grid-pair {
-  grid-template-columns: auto 1fr;
-}
-
-/* Drawn map placeholder — a grid of blocks with two roads crossing it.
-   Replace the whole MapPanel with a styled static map once the address is set. */
-@utility map-grid {
-  background-image:
-    repeating-linear-gradient(0deg, var(--color-bone-hairline) 0 1px, transparent 1px 72px),
-    repeating-linear-gradient(90deg, var(--color-bone-hairline) 0 1px, transparent 1px 72px);
-}
-@utility map-roads {
-  background-image:
-    repeating-linear-gradient(90deg, transparent 0 215px, #e6e1d6 215px 231px, transparent 231px 520px),
-    repeating-linear-gradient(0deg, transparent 0 160px, #e6e1d6 160px 174px, transparent 174px 420px);
 }
 
 /* Checkbox beside its consent text. */
@@ -277,8 +247,134 @@
     display: flex;
   }
 
+  /* The dropdown list itself is drawn by the OS on its own light background,
+     but inherits the select's colour — which on ink is near-white, so the
+     options come out unreadable. Set both explicitly. Kept light-on-dark-text
+     rather than brand-dark: a platform that ignores these falls back to black
+     on white, which is still legible. */
+  option {
+    background-color: var(--color-bone-raised);
+    color: var(--color-bone-text);
+  }
+  option[value=""] {
+    color: var(--color-bone-muted);
+  }
+
   /* A select showing its empty prompt reads as placeholder text, not an answer. */
   select:has(option[value=""]:checked) {
     color: var(--color-ink-muted);
+  }
+  .on-bone select:has(option[value=""]:checked) {
+    color: var(--color-bone-muted);
+  }
+}
+
+/* ============================================================================
+   SELECT MENU
+   The native dropdown list is drawn by the operating system and cannot be
+   styled — which is why the options above are only given a legible colour.
+   Chrome 135+ allows that list to be replaced by a real, styleable element via
+   `appearance: base-select`. Every other browser ignores this whole block and
+   keeps its native popup, so this is purely additive: no JavaScript, no
+   third-party component, and nothing to fall back from.
+   ========================================================================= */
+
+@supports (appearance: base-select) {
+  select,
+  ::picker(select) {
+    appearance: base-select;
+  }
+
+  /* The field draws its own caret in Field.astro; drop the browser's. */
+  select::picker-icon {
+    display: none;
+  }
+
+  select::picker(select) {
+    margin-block-start: --spacing(2);
+    border: 1px solid var(--color-gold);
+    background-color: var(--color-surface);
+    padding: 0;
+    opacity: 0;
+    transition:
+      opacity 0.2s var(--ease-brand),
+      overlay 0.2s allow-discrete,
+      display 0.2s allow-discrete;
+  }
+
+  select::picker(select):popover-open {
+    opacity: 1;
+  }
+
+  @starting-style {
+    select::picker(select):popover-open {
+      opacity: 0;
+    }
+  }
+
+  select option {
+    display: flex;
+    align-items: baseline;
+    gap: --spacing(3);
+    padding: --spacing(3) --spacing(4);
+    background-color: transparent;
+    color: var(--color-ink-muted);
+    font-size: var(--text-small);
+    transition:
+      color 0.15s var(--ease-brand),
+      background-color 0.15s var(--ease-brand);
+  }
+
+  select option:not(:last-child) {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  select option:hover,
+  select option:focus,
+  select option:checked {
+    background-color: var(--color-ink);
+    color: var(--color-ink-text);
+  }
+
+  /* The tick the browser inserts beside the chosen option, swapped for the
+     diamond used everywhere else and held as a fixed column so labels align. */
+  select option::checkmark {
+    content: '\25C6';
+    width: --spacing(3);
+    color: var(--color-gold);
+    font-size: var(--text-glyph);
+  }
+
+  select option:not(:checked)::checkmark {
+    color: transparent;
+  }
+
+  /* Bone counterpart, for the career inquiry form. */
+  .on-bone select::picker(select) {
+    border-color: var(--color-gold-deep);
+    background-color: var(--color-bone-raised);
+  }
+
+  .on-bone select option {
+    color: var(--color-bone-muted);
+  }
+
+  .on-bone select option:not(:last-child) {
+    border-bottom-color: var(--color-bone-hairline);
+  }
+
+  .on-bone select option:hover,
+  .on-bone select option:focus,
+  .on-bone select option:checked {
+    background-color: var(--color-bone);
+    color: var(--color-bone-text);
+  }
+
+  .on-bone select option::checkmark {
+    color: var(--color-gold-deep);
+  }
+
+  .on-bone select option:not(:checked)::checkmark {
+    color: transparent;
   }
 }

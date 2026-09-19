@@ -22,9 +22,14 @@ import Eyebrow from '../../ui/Eyebrow.astro';
       directly by professionals, with close attention to the transaction, the
       relationship, and the risks that matter.
     </p>
-    <div class="mt-2 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
+    <!-- Side by side from sm up, aligned on the shared baseline of the two
+         labels: the text link carries `self-start` for the stacked case, so it
+         has to opt back in here. -->
+    <div class="mt-2 flex flex-col items-start gap-6 sm:flex-row sm:items-baseline sm:gap-8">
       <Button href="/contact">Request a consultation</Button>
-      <Button href="/services" variant="text">Explore commercial services →</Button>
+      <Button href="/services" variant="text" class="sm:self-baseline">
+        Explore commercial services →
+      </Button>
     </div>
   </div>
 
