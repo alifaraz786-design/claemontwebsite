@@ -122,7 +122,7 @@ const redirectUrl = new URL('/thank-you', Astro.site ?? site.url).href;
     </label>
 
     <p data-form-error hidden class="text-small text-error-text">
-      Your inquiry could not be sent. Please try again, or write to
+      Your inquiry could not be sent. Please try again, or write to{' '}
       <a href={`mailto:${contact.email}`} class="border-b border-gold">{contact.email}</a>.
     </p>
 

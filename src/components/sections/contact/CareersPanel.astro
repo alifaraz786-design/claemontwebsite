@@ -149,7 +149,7 @@ const redirectUrl = new URL('/career-received', Astro.site ?? site.url).href;
       </label>
 
       <p data-form-error hidden class="text-small text-error">
-        Your inquiry could not be sent. Please try again, or write to
+        Your inquiry could not be sent. Please try again, or write to{' '}
         <a href={`mailto:${contact.careersEmail}`} class="border-b border-gold-deep">
           {contact.careersEmail}</a
         >.
@@ -160,7 +160,7 @@ const redirectUrl = new URL('/career-received', Astro.site ?? site.url).href;
       </Button>
 
       <p class="text-small text-bone-muted">
-        Career inquiries reach the firm at
+        Career inquiries reach the firm at{' '}
         <a href={`mailto:${contact.careersEmail}`} class="border-b border-gold-deep">
           {contact.careersEmail}</a
         >.
