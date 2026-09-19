@@ -104,6 +104,14 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    /* The site is dark by default. Chrome resolves autofill colours, scrollbars
+       and native control chrome from this; without it a dark page is treated as
+       light and autofill paints black text on ink. */
+    color-scheme: dark;
+  }
+
+  .on-bone {
+    color-scheme: light;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -247,16 +255,22 @@
     display: flex;
   }
 
-  /* The dropdown list itself is drawn by the OS on its own light background,
-     but inherits the select's colour — which on ink is near-white, so the
-     options come out unreadable. Set both explicitly. Kept light-on-dark-text
-     rather than brand-dark: a platform that ignores these falls back to black
-     on white, which is still legible. */
+  /* The dropdown list is drawn by the OS. `color-scheme` above already makes
+     it dark on ink and light on bone; these restate it so the list is legible
+     even on a platform that ignores the scheme for popups. Without both, the
+     options inherit the select's near-white colour onto a white list. */
   option {
+    background-color: var(--color-surface);
+    color: var(--color-ink-text);
+  }
+  option[value=""] {
+    color: var(--color-ink-muted);
+  }
+  .on-bone option {
     background-color: var(--color-bone-raised);
     color: var(--color-bone-text);
   }
-  option[value=""] {
+  .on-bone option[value=""] {
     color: var(--color-bone-muted);
   }
 
@@ -377,4 +391,78 @@
   .on-bone select option:not(:checked)::checkmark {
     color: transparent;
   }
+}
+
+/* ============================================================================
+   AUTOFILL
+   Chrome paints an autofilled field with its own pale blue and near-black text,
+   which is illegible on ink and turns the underline-only field into a box. The
+   background cannot be set directly, so it is covered by an inset shadow the
+   size of the field, and the text colour is forced with -webkit-text-fill-color.
+
+   Deliberately unlayered: `focus:shadow-field` lives in Tailwind's utilities
+   layer and would otherwise win on focus and bring the blue back, so the focus
+   rules below restate the gold underline alongside the cover.
+   ========================================================================= */
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-ink-text);
+  caret-color: var(--color-ink-text);
+  box-shadow: inset 0 0 0 100px var(--color-ink);
+  /* Chrome re-runs its own colour transition on interaction; the absurd delay
+     is the conventional way to make sure it never arrives. */
+  transition: background-color 0s 600000s;
+}
+
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-ink-text);
+  caret-color: var(--color-ink-text);
+}
+
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill:focus {
+  box-shadow:
+    inset 0 0 0 100px var(--color-ink),
+    var(--shadow-field);
+}
+
+/* Bone counterpart, for the career inquiry form. */
+.on-bone input:-webkit-autofill,
+.on-bone textarea:-webkit-autofill,
+.on-bone select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-bone-text);
+  caret-color: var(--color-bone-text);
+  box-shadow: inset 0 0 0 100px var(--color-bone);
+}
+
+.on-bone input:-webkit-autofill:hover,
+.on-bone input:-webkit-autofill:focus,
+.on-bone input:-webkit-autofill:active,
+.on-bone textarea:-webkit-autofill:hover,
+.on-bone textarea:-webkit-autofill:focus,
+.on-bone textarea:-webkit-autofill:active,
+.on-bone select:-webkit-autofill:hover,
+.on-bone select:-webkit-autofill:focus,
+.on-bone select:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-bone-text);
+  caret-color: var(--color-bone-text);
+}
+
+.on-bone input:-webkit-autofill:focus,
+.on-bone textarea:-webkit-autofill:focus,
+.on-bone select:-webkit-autofill:focus {
+  box-shadow:
+    inset 0 0 0 100px var(--color-bone),
+    var(--shadow-field-bone);
 }

@@ -1,0 +1,60 @@
+---
+/**
+ * Progressive enhancement for the two contact forms. Included once per page.
+ *
+ * Without this script the forms are ordinary HTML: they POST to Web3Forms and
+ * Web3Forms redirects to /thank-you or /career-received. With it, the same
+ * submission goes over fetch, the visitor stays where they are, the form is
+ * replaced in place by its confirmation panel and its fields are cleared.
+ *
+ * This is the second and last script on the site. It adds no dependency and
+ * nothing is required for the forms to work.
+ */
+---
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('form[data-ajax]');
+
+  forms.forEach((form) => {
+    const panel = document.getElementById(form.dataset.success ?? '');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const error = form.querySelector<HTMLElement>('[data-form-error]');
+    if (!panel || !button) return;
+
+    const idleLabel = button.textContent ?? '';
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (error) error.hidden = true;
+      button.disabled = true;
+      button.textContent = 'Sending…';
+
+      const data = new FormData(form);
+      // `redirect` only applies to a native POST. Over fetch Web3Forms answers
+      // with JSON, and the confirmation is shown here instead.
+      data.delete('redirect');
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result?.success) throw new Error(result?.message ?? 'Failed');
+
+        form.reset();
+        form.hidden = true;
+        panel.hidden = false;
+        // Focus is what announces the panel and lands the keyboard in it;
+        // the scroll is separate so the page does not jump twice.
+        panel.focus({ preventScroll: true });
+        panel.scrollIntoView({ block: 'center' });
+      } catch {
+        if (error) error.hidden = false;
+        button.disabled = false;
+        button.textContent = idleLabel;
+      }
+    });
+  });
+</script>

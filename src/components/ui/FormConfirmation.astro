@@ -1,0 +1,50 @@
+---
+/**
+ * In-place confirmation panel, swapped in for a form once it has submitted.
+ *
+ * Hidden until the enhancement script reveals it, so a visitor without
+ * JavaScript never sees it — they get the native POST and the /thank-you page
+ * instead. `tabindex="-1"` is here so focus can be moved onto the panel: that
+ * is what announces it to a screen reader and what puts a keyboard user in the
+ * right place.
+ */
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  tone?: 'ink' | 'bone';
+  class?: string;
+}
+
+const { id, eyebrow, heading, tone = 'ink', class: className = '' }: Props = Astro.props;
+
+const accent = tone === 'ink' ? 'border-gold' : 'border-gold-deep';
+const bodyTone = tone === 'ink' ? 'text-ink-muted' : 'text-bone-muted';
+---
+
+<div
+  id={id}
+  hidden
+  tabindex="-1"
+  role="status"
+  class:list={[
+    'flex scroll-mt-24 flex-col items-start gap-6 border px-6 py-12 focus:outline-none lg:px-10 lg:py-14',
+    accent,
+    className,
+  ]}
+>
+  <div
+    aria-hidden="true"
+    class:list={['flex h-14 w-14 items-center justify-center rounded-full border', accent]}
+  >
+    <span class:list={['-mt-0.75 block h-2.75 w-5.5 -rotate-45 border-b border-l', accent]}></span>
+  </div>
+
+  <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+  <h3 class="text-h3-sm font-light lg:text-h2">{heading}</h3>
+  <div class:list={['flex max-w-xl flex-col gap-4 text-body', bodyTone]}>
+    <slot />
+  </div>
+</div>

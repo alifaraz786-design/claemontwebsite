@@ -17,8 +17,10 @@ Vercel. Built from a Claude Design canvas; the source artboards are in
 
 - **Astro 7**, default `static` output. No SSR, no adapter, no server code.
 - **Tailwind CSS v4**, wired through `@tailwindcss/vite` in `astro.config.mjs`.
-- **Zero JavaScript ships** except one inline script for the mobile menu.
-  Keep it that way — if a feature needs a framework component, question the feature.
+- **Two scripts ship, both progressive enhancement**: the mobile menu in
+  `Header.astro`, and `FormScript.astro` for the contact forms. Neither is
+  required — remove them and the site still navigates and submits. Keep it that
+  way; if a feature needs a framework component, question the feature.
 
 ### There is no `tailwind.config.js` — and there should not be
 
@@ -97,9 +99,17 @@ One `<h1>` per page. Decorative marks (arrows, diamonds, rules, the map) carry
 
 ## Forms — there is no backend
 
-Both forms live on `/contact` and post directly to Web3Forms. The **client
-inquiry** redirects to `/thank-you`; the **career inquiry** redirects to
-`/career-received`, so an applicant never lands on the client confirmation.
+Both forms live on `/contact` and post directly to Web3Forms.
+
+`FormScript.astro` intercepts the submit, sends it over fetch, then clears the
+form and swaps it for an in-place `FormConfirmation` panel — the visitor never
+leaves the page. It strips the `redirect` field, since that only applies to a
+native POST. On failure the form is left filled in with an error beneath it, so
+nobody retypes an inquiry.
+
+Without JavaScript the same forms POST natively and Web3Forms redirects: the
+**client inquiry** to `/thank-you`, the **career inquiry** to
+`/career-received`. Those two pages are the fallback and must not be deleted.
 
 Web3Forms carries no attachments on the free plan, so the career form asks for
 a link to a CV rather than an upload. Adding a real file upload means adding a

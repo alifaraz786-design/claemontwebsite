@@ -2,9 +2,10 @@
 /**
  * Client inquiry form.
  *
- * Posts straight to Web3Forms — there is no backend and no client-side
- * submission handling, which is why this is a plain HTML form. On success
- * Web3Forms redirects to /thank-you, which carries the confirmation message.
+ * Posts straight to Web3Forms — there is no backend. It is a plain HTML form,
+ * so with JavaScript unavailable it POSTs natively and Web3Forms redirects to
+ * /thank-you. With FormScript loaded the same submission goes over fetch and
+ * the confirmation below replaces the form in place.
  *
  * The form deliberately asks for a description rather than an upload: the firm
  * does not want confidential documents attached to a first inquiry.
@@ -12,110 +13,133 @@
 import Field from '../../ui/Field.astro';
 import Button from '../../ui/Button.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
-import { web3FormsKey, site } from '../../../data/site';
+import FormConfirmation from '../../ui/FormConfirmation.astro';
+import { web3FormsKey, site, contact } from '../../../data/site';
 import { needOptions, draftOptions } from '../../../data/intake';
 
 const redirectUrl = new URL('/thank-you', Astro.site ?? site.url).href;
 ---
 
-<form
-  id="inquiry"
-  action="https://api.web3forms.com/submit"
-  method="POST"
-  class="flex flex-col gap-11 scroll-mt-24 lg:border-l lg:border-hairline lg:pl-24"
->
-  <input type="hidden" name="access_key" value={web3FormsKey} />
-  <input type="hidden" name="subject" value={`New consultation inquiry — ${site.name}`} />
-  <input type="hidden" name="from_name" value={site.name} />
-  <input type="hidden" name="redirect" value={redirectUrl} />
+<div id="inquiry" class="scroll-mt-24 lg:border-l lg:border-hairline lg:pl-24">
+  <form
+    data-ajax
+    data-success="inquiry-sent"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    class="flex flex-col gap-11"
+  >
+    <input type="hidden" name="access_key" value={web3FormsKey} />
+    <input type="hidden" name="subject" value={`New consultation inquiry — ${site.name}`} />
+    <input type="hidden" name="from_name" value={site.name} />
+    <input type="hidden" name="redirect" value={redirectUrl} />
 
-  <!-- Honeypot. Web3Forms discards any submission where this is filled in. -->
-  <input
-    type="checkbox"
-    name="botcheck"
-    class="hidden"
-    style="display:none"
-    tabindex="-1"
-    autocomplete="off"
-  />
-
-  <div class="flex flex-col gap-4">
-    <Eyebrow>Consultation inquiry</Eyebrow>
-    <h2 class="text-h3-sm font-light lg:text-h2">Tell us about the agreement.</h2>
-    <p class="max-w-xl text-body text-ink-muted">
-      Provide enough information for an initial review of fit. Please do not
-      upload confidential documents unless the firm requests them.
-    </p>
-  </div>
-
-  <div class="grid gap-11 sm:grid-cols-2 sm:gap-x-8">
-    <Field
-      label="Full name"
-      name="name"
-      required
-      autocomplete="name"
-      placeholder="Your full name"
-    />
-    <Field
-      label="Email"
-      name="email"
-      type="email"
-      required
-      autocomplete="email"
-      placeholder="Your email address"
-      error="Enter a complete email address."
-    />
-    <Field
-      label="Company or organization"
-      name="company"
-      autocomplete="organization"
-      placeholder="Optional"
-      full
-    />
-    <Field
-      label="Your location"
-      name="location"
-      required
-      placeholder="Country and state, province, or region"
-      full
-    />
-    <Field
-      label="Other party's location"
-      name="counterparty_location"
-      placeholder="Country and state, province, or region, if known"
-      full
-    />
-    <Field label="What do you need?" name="need" as="select" options={needOptions} required />
-    <Field
-      label="Does a draft already exist?"
-      name="existing_draft"
-      as="select"
-      options={draftOptions}
-    />
-    <Field label="Known deadline" name="deadline" placeholder="Optional" full />
-  </div>
-
-  <Field
-    label="Brief description"
-    name="message"
-    as="textarea"
-    required
-    rows={5}
-    placeholder="Please describe the agreement, the parties, and the assistance you are seeking. Do not include confidential information."
-  />
-
-  <label class="grid grid-consent items-start gap-4">
+    <!-- Honeypot. Web3Forms discards any submission where this is filled in. -->
     <input
       type="checkbox"
-      name="acknowledgment"
-      required
-      class="mt-1 h-4.5 w-4.5 appearance-none rounded-none border border-gold bg-transparent checked:bg-gold"
+      name="botcheck"
+      class="hidden"
+      style="display:none"
+      tabindex="-1"
+      autocomplete="off"
     />
-    <span class="text-small text-ink-muted">
-      I understand that submitting this inquiry does not create a lawyer client
-      relationship and that I should not include confidential information.
-    </span>
-  </label>
 
-  <Button type="submit" block={false}>Submit inquiry</Button>
-</form>
+    <div class="flex flex-col gap-4">
+      <Eyebrow>Consultation inquiry</Eyebrow>
+      <h2 class="text-h3-sm font-light lg:text-h2">Tell us about the agreement.</h2>
+      <p class="max-w-xl text-body text-ink-muted">
+        Provide enough information for an initial review of fit. Please do not
+        upload confidential documents unless the firm requests them.
+      </p>
+    </div>
+
+    <div class="grid gap-11 sm:grid-cols-2 sm:gap-x-8">
+      <Field
+        label="Full name"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder="Your full name"
+      />
+      <Field
+        label="Email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="Your email address"
+        error="Enter a complete email address."
+      />
+      <Field
+        label="Company or organization"
+        name="company"
+        autocomplete="organization"
+        placeholder="Optional"
+        full
+      />
+      <Field
+        label="Your location"
+        name="location"
+        required
+        placeholder="Country and state, province, or region"
+        full
+      />
+      <Field
+        label="Other party's location"
+        name="counterparty_location"
+        placeholder="Country and state, province, or region, if known"
+        full
+      />
+      <Field label="What do you need?" name="need" as="select" options={needOptions} required />
+      <Field
+        label="Does a draft already exist?"
+        name="existing_draft"
+        as="select"
+        options={draftOptions}
+      />
+      <Field label="Known deadline" name="deadline" placeholder="Optional" full />
+    </div>
+
+    <Field
+      label="Brief description"
+      name="message"
+      as="textarea"
+      required
+      rows={5}
+      placeholder="Please describe the agreement, the parties, and the assistance you are seeking. Do not include confidential information."
+    />
+
+    <label class="grid grid-consent items-start gap-4">
+      <input
+        type="checkbox"
+        name="acknowledgment"
+        required
+        class="mt-1 h-4.5 w-4.5 appearance-none rounded-none border border-gold bg-transparent checked:bg-gold"
+      />
+      <span class="text-small text-ink-muted">
+        I understand that submitting this inquiry does not create a lawyer client
+        relationship and that I should not include confidential information.
+      </span>
+    </label>
+
+    <p data-form-error hidden class="text-small text-error-text">
+      Your inquiry could not be sent. Please try again, or write to
+      <a href={`mailto:${contact.email}`} class="border-b border-gold">{contact.email}</a>.
+    </p>
+
+    <Button type="submit" block={false} class="disabled:opacity-60">Submit inquiry</Button>
+  </form>
+
+  <FormConfirmation
+    id="inquiry-sent"
+    eyebrow="Inquiry received"
+    heading="Your inquiry has been received for an initial review."
+  >
+    <p>
+      Claemont Ridge Law has not accepted the matter or assumed responsibility
+      for any deadline unless and until an engagement is confirmed in writing.
+    </p>
+    <p>
+      The firm will review what you have sent and update you by email.
+    </p>
+  </FormConfirmation>
+</div>
