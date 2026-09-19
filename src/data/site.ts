@@ -12,7 +12,7 @@ export const site = {
   tagline: 'Commercial contracts and business counsel.',
   description:
     'Claemont Ridge Law drafts, reviews, and refines commercial agreements for technology companies, established businesses, agencies, consultants, online enterprises, and independent professionals.',
-  url: 'https://claemontridgelaw.com',
+  url: 'https://www.claemontridgelaw.com',
 } as const;
 
 export const contact = {
