@@ -138,5 +138,31 @@ const structuredData = {
       <slot />
     </main>
     <Footer />
-  </body>
+
+<script is:inline>
+  (() => {
+    // Send only one visitor alert per browser session.
+    if (sessionStorage.getItem('claemont_visitor_alert_sent')) return;
+
+    sessionStorage.setItem('claemont_visitor_alert_sent', 'true');
+
+    fetch('/api/visitor', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        page: window.location.href,
+        referrer: document.referrer || 'Direct / Unknown',
+        userAgent: navigator.userAgent,
+      }),
+    }).catch((error) => {
+      console.error('Visitor notification failed:', error);
+      // Allow another attempt if the request itself failed.
+      sessionStorage.removeItem('claemont_visitor_alert_sent');
+    });
+  })();
+</script>
+
+</body>
 </html>
