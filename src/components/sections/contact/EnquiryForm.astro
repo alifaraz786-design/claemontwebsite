@@ -15,7 +15,6 @@ import Button from '../../ui/Button.astro';
 import Eyebrow from '../../ui/Eyebrow.astro';
 import FormConfirmation from '../../ui/FormConfirmation.astro';
 import { web3FormsKey, site, contact } from '../../../data/site';
-import { needOptions, draftOptions } from '../../../data/intake';
 
 const redirectUrl = new URL('/thank-you', Astro.site ?? site.url).href;
 ---
@@ -89,12 +88,16 @@ const redirectUrl = new URL('/thank-you', Astro.site ?? site.url).href;
         placeholder="Country and state, province, or region, if known"
         full
       />
-      <Field label="What do you need?" name="need" as="select" options={needOptions} required />
+      <Field
+        label="What do you need?"
+        name="need"
+        required
+        placeholder="Briefly describe what you need"
+      />
       <Field
         label="Does a draft already exist?"
         name="existing_draft"
-        as="select"
-        options={draftOptions}
+        placeholder="Type your answer"
       />
       <Field label="Known deadline" name="deadline" placeholder="Optional" full />
     </div>
