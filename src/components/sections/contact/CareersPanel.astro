@@ -6,9 +6,8 @@
  * above it, and given its own Web3Forms post with its own redirect so an
  * applicant does not land on the client confirmation.
  *
- * Web3Forms attachments require a PRO plan. Until that submission capability
- * is enabled, the disabled upload control makes the supported CV-link route
- * explicit rather than accepting a document that cannot be delivered.
+ * CVs are collected as shareable links; this Web3Forms setup does not accept
+ * document attachments.
  */
 import Field from '../../ui/Field.astro';
 import Button from '../../ui/Button.astro';
@@ -113,30 +112,14 @@ const redirectUrl = new URL('/career-received', Astro.site ?? site.url).href;
         />
         <Field
           tone="bone"
-          label="CV"
+          label="CV / RÉSUMÉ LINK"
           name="cv"
           type="url"
           required
-          placeholder="A link to your CV — Drive, Dropbox, or a personal site"
+          placeholder="Google Drive, Dropbox, OneDrive, or another shareable link"
           error="Enter a complete web address, starting https://"
           full
         />
-        <label class="flex flex-col gap-3 sm:col-span-2">
-          <span class="text-eyebrow font-medium uppercase tracking-eyebrow text-bone-muted">
-            Upload CV
-          </span>
-          <input
-            type="file"
-            name="cv_attachment"
-            accept=".pdf,.doc,.docx"
-            disabled
-            aria-describedby="cv-upload-note"
-            class="w-full rounded-none border-0 border-b border-bone-hairline bg-transparent px-0 pt-2.5 pb-3.5 font-sans text-body text-bone-text transition-colors duration-200 file:mr-4 file:border-0 file:bg-transparent file:font-sans file:text-small file:text-bone-text disabled:cursor-not-allowed disabled:opacity-60"
-          />
-          <span id="cv-upload-note" class="text-small text-bone-muted">
-            Paste a CV link above, or upload a PDF, DOC, or DOCX when uploads are enabled.
-          </span>
-        </label>
       </div>
 
       <Field
